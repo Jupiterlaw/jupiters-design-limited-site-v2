@@ -1,3 +1,75 @@
+# Project Progress — Jupiter's Design Limited Website v2
+
+**Repo:** Jupiterlaw/jupiters-design-limited-site-v2
+**Stack:** Astro + TypeScript
+**Deployment:** Cloudflare Pages
+**Domain:** Registered directly on Cloudflare
+**Cloudflare project name:** jupitersdesignlimited
+**Local path:** ~/jupiters-design-limited-site-v2
+**Last updated:** 2026-07-18
+
+---
+
+## Completed
+
+- [x] GitHub repo created: jupiters-design-limited-site-v2
+- [x] Astro + TypeScript project initialized (minimal template, strict mode)
+- [x] GitHub PAT generated (repo scope)
+- [x] PROGRESS.md created for AI context tracking
+
+## In Progress
+
+- [ ] Move Astro files from technological-tower/ subfolder to repo root
+- [ ] Configure git remote with PAT and push successfully to main branch
+
+## Todo
+
+### Deployment
+- [ ] Create Cloudflare Pages project connected to this repo
+- [ ] Set build command: npm run build
+- [ ] Set output directory: dist
+- [ ] Confirm preview deployment works
+- [ ] Connect custom domain
+- [ ] Confirm production deployment live
+
+### Website Content
+- [ ] Homepage (Hero, About, Services)
+- [ ] Services page
+- [ ] Contact page
+- [ ] Navigation + Footer components
+
+### Future Features
+- [ ] Quotation / pricing calculator
+- [ ] Lead capture / enquiry form
+- [ ] Google Apps Script integration for form submissions
+- [ ] Service area map
+
+---
+
+## Notes
+
+- Astro was initialized into a subfolder called `technological-tower/` instead of root ??files need to be moved before first successful push
+- Git push via HTTPS requires PAT authentication format:
+  `git remote set-url origin https://Jupiterlaw:YOUR_PAT@github.com/Jupiterlaw/jupiters-design-limited-site-v2.git`
+- Always test on Cloudflare Pages preview before promoting to production
+- Old Cloudflare Worker project `jupitersdesignlimited` was the previous site ??do not delete until new site is confirmed live
+
+---
+
+## How to Update This File
+
+Every time a task is completed, edit this file:
+1. Move the item from `Todo` or `In Progress` to `Completed`
+2. Add `[x]` checkbox
+3. Update the `Last updated` date at the top
+4. Commit with message: `docs: update PROGRESS.md`
+
+When starting a new Perplexity Space conversation, paste the contents of this file so the AI knows the current project state.
+
+
+---
+
+
 # Project Progress Tracker
 
 **Project**: Jupiter's Design Limited - Official Website  
@@ -7,24 +79,24 @@
 
 ---
 
-## 🎯 Overall Status
+## ? Overall Status
 
 | Milestone | Status | Completion Date |
 |-----------|--------|----------------|
-| 📁 Repository Setup | ✅ Complete | 2026-07-18 |
-| 🎨 Website Design & Build | ✅ Complete | 2026-07-18 |
-| ☁️ Cloudflare Pages Connection | 🟡 Pending | - |
-| 🌐 Custom Domain DNS Setup | 🟡 Pending | - |
-| 🚀 Production Launch | 🟡 Pending | - |
+| ?? Repository Setup | ??Complete | 2026-07-18 |
+| ? Website Design & Build | ??Complete | 2026-07-18 |
+| ?? Cloudflare Pages Connection | ? Pending | - |
+| ?? Custom Domain DNS Setup | ? Pending | - |
+| ?? Production Launch | ? Pending | - |
 
 **Legend**:  
-✅ Complete | 🟡 Pending | 🔄 In Progress | ⚠️ Blocked
+??Complete | ? Pending | ?? In Progress | ?? Blocked
 
 ---
 
-## 🛠️ Phase 1: Website Development
+## ??儭?Phase 1: Website Development
 
-### ✅ Completed Tasks
+### ??Completed Tasks
 
 - [x] Initialize Astro project with TypeScript
 - [x] Configure `astro.config.mjs` with site URL (`https://www.jupitersdesign.com`)
@@ -48,11 +120,11 @@
   - [x] FAQ accordion
   - [x] Smooth scroll navigation
   - [x] Form submission handler
-- [x] Use Traditional Chinese (繁體中文) for all content
+- [x] Use Traditional Chinese (蝜?銝剜?) for all content
 - [x] Add proper SEO meta tags
 - [x] Use placeholder markers for images/data
 
-### 🟡 Pending Tasks
+### ? Pending Tasks
 
 - [ ] Replace placeholder images with real project photos
 - [ ] Update trust badge numbers with actual data
@@ -70,15 +142,15 @@
 
 ---
 
-## 📚 Phase 2: Documentation
+## ?? Phase 2: Documentation
 
-### ✅ Completed
+### ??Completed
 
 - [x] Create `Workflow.md` - Complete deployment guide
 - [x] Create `Progress.md` - This tracking document
 - [x] Add README.md with project overview (already exists)
 
-### 🟡 Pending
+### ? Pending
 
 - [ ] Document content update procedures
 - [ ] Create style guide for future updates
@@ -86,13 +158,13 @@
 
 ---
 
-## ☁️ Phase 3: Cloudflare Pages Deployment
+## ?? Phase 3: Cloudflare Pages Deployment
 
-### 🟡 Steps to Complete
+### ? Steps to Complete
 
 1. **Connect GitHub to Cloudflare Pages**
    - [ ] Log in to Cloudflare Dashboard
-   - [ ] Go to Workers & Pages → Create application → Pages
+   - [ ] Go to Workers & Pages ??Create application ??Pages
    - [ ] Authorize GitHub access
    - [ ] Select repository: `Jupiterlaw/jupiters-design-limited-site-v2`
    - [ ] Configure build settings:
@@ -112,7 +184,7 @@
    - [ ] Test contact form (client-side validation)
    - [ ] Test FAQ accordion
 
-### ⚠️ Potential Issues
+### ?? Potential Issues
 
 - **Build fails**: Check build logs in Cloudflare Pages dashboard
 - **Tailwind not loading**: CDN should work without build step (already using CDN)
@@ -120,12 +192,12 @@
 
 ---
 
-## 🌐 Phase 4: Custom Domain Setup
+## ?? Phase 4: Custom Domain Setup
 
-### 🟡 Steps to Complete
+### ? Steps to Complete
 
 1. **Add Custom Domain in Cloudflare Pages**
-   - [ ] In Cloudflare Pages project → Custom domains
+   - [ ] In Cloudflare Pages project ??Custom domains
    - [ ] Click "Set up a custom domain"
    - [ ] Enter: `www.jupitersdesign.com`
    - [ ] Cloudflare auto-adds CNAME record
@@ -136,7 +208,7 @@
      - Type: `CNAME`
      - Name: `www`
      - Target: `jupiters-design-limited-site-v2.pages.dev`
-     - Proxy: ON (☁️ orange cloud)
+     - Proxy: ON (?? orange cloud)
    - [ ] Add root domain redirect (optional):
      - Add both `www.jupitersdesign.com` and `jupitersdesign.com` as custom domains
      - OR use Page Rule to redirect root to www
@@ -155,9 +227,9 @@
 
 ---
 
-## 🚀 Phase 5: Post-Launch
+## ?? Phase 5: Post-Launch
 
-### 🟡 Immediate Tasks (Within 24 Hours)
+### ? Immediate Tasks (Within 24 Hours)
 
 - [ ] Submit sitemap to Google Search Console
 - [ ] Submit site to Bing Webmaster Tools
@@ -166,7 +238,7 @@
 - [ ] Share live site with client for feedback
 - [ ] Monitor Cloudflare Analytics for traffic
 
-### 🟡 Short-Term (Within 1 Week)
+### ? Short-Term (Within 1 Week)
 
 - [ ] Replace all `[PLACEHOLDER]` content with real data
 - [ ] Add real project photos to portfolio
@@ -175,7 +247,7 @@
 - [ ] Add WhatsApp Business API integration (optional)
 - [ ] Create Instagram feed integration (optional)
 
-### 🟡 Long-Term (1-3 Months)
+### ? Long-Term (1-3 Months)
 
 - [ ] Create blog section with SEO articles
 - [ ] Add product/service pages
@@ -186,19 +258,19 @@
 
 ---
 
-## 📈 Success Metrics
+## ?? Success Metrics
 
 | Metric | Target | Current Status |
 |--------|--------|---------------|
-| **Page Load Speed** | < 3 seconds | 🟡 Not measured yet |
-| **Lighthouse SEO Score** | > 90 | 🟡 Not measured yet |
-| **Mobile Usability** | 100% pass | ✅ Design is mobile-first |
-| **Form Submissions/Month** | > 20 | 🟡 Site not live yet |
-| **Organic Search Traffic** | Growing monthly | 🟡 Not launched yet |
+| **Page Load Speed** | < 3 seconds | ? Not measured yet |
+| **Lighthouse SEO Score** | > 90 | ? Not measured yet |
+| **Mobile Usability** | 100% pass | ??Design is mobile-first |
+| **Form Submissions/Month** | > 20 | ? Site not live yet |
+| **Organic Search Traffic** | Growing monthly | ? Not launched yet |
 
 ---
 
-## 📝 Notes & Action Items
+## ?? Notes & Action Items
 
 ### Client Action Required:
 
@@ -222,14 +294,14 @@
 
 ### Developer Notes:
 
-- Tailwind CDN used for simplicity — consider switching to build-time Tailwind for production optimization
-- Images currently use Unsplash placeholders — replace with real photos
-- Form submission currently shows alert — needs backend integration
+- Tailwind CDN used for simplicity ??consider switching to build-time Tailwind for production optimization
+- Images currently use Unsplash placeholders ??replace with real photos
+- Form submission currently shows alert ??needs backend integration
 - Consider adding structured data (JSON-LD) for SEO
 
 ---
 
-## 🔗 Quick Links
+## ?? Quick Links
 
 - **GitHub Repo**: [github.com/Jupiterlaw/jupiters-design-limited-site-v2](https://github.com/Jupiterlaw/jupiters-design-limited-site-v2)
 - **Deployment Guide**: [Workflow.md](./Workflow.md)
