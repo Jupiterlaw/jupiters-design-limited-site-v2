@@ -1,17 +1,454 @@
 ---
-
+// Jupiter's Design Limited - Complete Home Page
 ---
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jupiter's Design Limited | 專業SPC地板安裝 | 香港地板工程專家</title>
+  <meta name="description" content="Jupiter's Design Limited 提供專業SPC地板、木地板安裝服務，服務香港住宅、商業及設計公司客戶。免費上門評估，立即聯絡 +852 9571 5155">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            wood: { 50: '#FAF6F0', 100: '#E8DCC8', 200: '#D2B896', 300: '#8B5A2B', 400: '#5C4A38' },
+            accent: { DEFAULT: '#D2691E', dark: '#B85C1A' }
+          },
+          fontFamily: {
+            sans: ['system-ui', '-apple-system', 'sans-serif'],
+            serif: ['Georgia', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .accordion-content.active { max-height: 500px; }
+  </style>
+</head>
+<body class="font-sans text-wood-400 bg-white">
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<!-- Sticky WhatsApp Button -->
+<a href="https://wa.me/85295715155" target="_blank" 
+   class="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white w-16 h-16 rounded-full shadow-2xl flex items-center justify-center text-3xl transition-transform hover:scale-110">
+  💬
+</a>
+
+<!-- Navigation Bar -->
+<nav class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-wood-100 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="flex justify-between items-center h-16">
+      <div class="font-serif text-xl sm:text-2xl font-bold text-wood-300">Jupiter's Design</div>
+      <div class="hidden md:flex items-center space-x-6">
+        <a href="#services" class="hover:text-accent transition">服務</a>
+        <a href="#portfolio" class="hover:text-accent transition">項目案例</a>
+        <a href="#about" class="hover:text-accent transition">關於我們</a>
+        <a href="#faq" class="hover:text-accent transition">常見問題</a>
+        <a href="#contact" class="bg-accent hover:bg-accent-dark text-white px-6 py-2.5 rounded-lg font-semibold transition">免費報價</a>
+      </div>
+      <button onclick="toggleMobileMenu()" class="md:hidden text-2xl">☰</button>
+    </div>
+  </div>
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="hidden md:hidden border-t border-wood-100 bg-white">
+    <a href="#services" class="block px-4 py-3 hover:bg-wood-50">服務</a>
+    <a href="#portfolio" class="block px-4 py-3 hover:bg-wood-50">項目案例</a>
+    <a href="#about" class="block px-4 py-3 hover:bg-wood-50">關於我們</a>
+    <a href="#faq" class="block px-4 py-3 hover:bg-wood-50">常見問題</a>
+    <a href="#contact" class="block px-4 py-3 bg-accent text-white font-semibold">免費報價</a>
+  </div>
+</nav>
+
+<!-- SECTION 1: HERO -->
+<section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 -z-10">
+    <img src="https://images.unsplash.com/photo-1615874694520-474822394e73?w=1600&q=80" alt="溫暖木地板" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-wood-400/90 via-wood-400/50 to-wood-400/20"></div>
+  </div>
+  <div class="relative z-10 max-w-4xl mx-auto px-6 py-24 text-center">
+    <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight drop-shadow-lg">
+      專業地板安裝<br>為您打造溫暖家園
+    </h1>
+    <p class="mt-6 text-lg sm:text-xl text-white/95">SPC地板 · 實木地板 · 專業安裝 · 一站式服務</p>
+    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="#contact" class="inline-flex items-center justify-center min-h-[56px] px-10 py-4 bg-accent hover:bg-accent-dark text-white text-lg font-bold rounded-lg shadow-xl transition">
+        免費上門評估
+      </a>
+      <a href="tel:+85295715155" class="inline-flex items-center justify-center min-h-[56px] px-10 py-4 bg-white/15 border-2 border-white hover:bg-white/25 text-white text-lg font-semibold rounded-lg backdrop-blur transition">
+        📞 9571 5155
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: TRUST BADGES -->
+<section class="bg-wood-50 border-y border-wood-100 py-12">
+  <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+    <div>
+      <div class="text-3xl sm:text-4xl font-bold text-accent font-serif">[15]+</div>
+      <div class="mt-2 text-sm sm:text-base text-wood-400">年專業經驗</div>
+    </div>
+    <div>
+      <div class="text-3xl sm:text-4xl font-bold text-accent font-serif">[800]+</div>
+      <div class="mt-2 text-sm sm:text-base text-wood-400">完成項目</div>
+    </div>
+    <div>
+      <div class="text-3xl sm:text-4xl font-bold text-accent font-serif">[持牌]</div>
+      <div class="mt-2 text-sm sm:text-base text-wood-400">專業技術團隊</div>
+    </div>
+    <div>
+      <div class="text-3xl sm:text-4xl font-bold text-accent font-serif">[4.9]/5</div>
+      <div class="mt-2 text-sm sm:text-base text-wood-400">客戶評分</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: AUDIENCE SEGMENTATION -->
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-center text-wood-300 mb-4">我們為誰服務</h2>
+    <p class="text-center text-wood-400 mb-12">不同客戶需求，度身訂造專業方案</p>
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Homeowners -->
+      <div class="bg-wood-50 rounded-xl p-8 hover:shadow-xl transition border border-wood-100">
+        <div class="text-4xl mb-4">🏡</div>
+        <h3 class="text-2xl font-serif font-bold text-wood-300 mb-3">住宅業主</h3>
+        <p class="text-wood-400 mb-6">注重風格、溫暖質感及無憂安裝流程，讓家居煥然一新</p>
+        <a href="#contact" class="inline-block bg-accent hover:bg-accent-dark text-white px-6 py-3 rounded-lg font-semibold transition">免費上門度尺</a>
+      </div>
+      <!-- Designers -->
+      <div class="bg-wood-50 rounded-xl p-8 hover:shadow-xl transition border border-wood-100">
+        <div class="text-4xl mb-4">🎨</div>
+        <h3 class="text-2xl font-serif font-bold text-wood-300 mb-3">設計師 / 裝修公司</h3>
+        <p class="text-wood-400 mb-6">批發價格、靈活檔期配合、專業合作伙伴</p>
+        <a href="#contact" class="inline-block bg-accent hover:bg-accent-dark text-white px-6 py-3 rounded-lg font-semibold transition">合作查詢</a>
+      </div>
+      <!-- Commercial -->
+      <div class="bg-wood-50 rounded-xl p-8 hover:shadow-xl transition border border-wood-100">
+        <div class="text-4xl mb-4">🏢</div>
+        <h3 class="text-2xl font-serif font-bold text-wood-300 mb-3">商業客戶</h3>
+        <p class="text-wood-400 mb-6">大型項目經驗、耐用規格、保證工期</p>
+        <a href="#contact" class="inline-block bg-accent hover:bg-accent-dark text-white px-6 py-3 rounded-lg font-semibold transition">索取商業報價</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: SERVICES -->
+<section id="services" class="py-20 bg-wood-50">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-center text-wood-300 mb-12">專業地板服務</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-white rounded-lg p-6 shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-bold text-wood-300 mb-2">SPC石塑地板</h3>
+        <p class="text-wood-400 text-sm mb-4">防水防潮、耐磨耐用、適合香港氣候</p>
+        <a href="#contact" class="text-accent font-semibold hover:underline">獲取報價 →</a>
+      </div>
+      <div class="bg-white rounded-lg p-6 shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-bold text-wood-300 mb-2">實木/複合木地板</h3>
+        <p class="text-wood-400 text-sm mb-4">天然質感、溫暖觸感、提升家居品味</p>
+        <a href="#contact" class="text-accent font-semibold hover:underline">獲取報價 →</a>
+      </div>
+      <div class="bg-white rounded-lg p-6 shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-bold text-wood-300 mb-2">地板翻新</h3>
+        <p class="text-wood-400 text-sm mb-4">舊地板煥然一新、節省成本</p>
+        <a href="#contact" class="text-accent font-semibold hover:underline">獲取報價 →</a>
+      </div>
+      <div class="bg-white rounded-lg p-6 shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-bold text-wood-300 mb-2">專業安裝</h3>
+        <p class="text-wood-400 text-sm mb-4">經驗豐富團隊、快速整潔施工</p>
+        <a href="#contact" class="text-accent font-semibold hover:underline">獲取報價 →</a>
+      </div>
+      <div class="bg-white rounded-lg p-6 shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-bold text-wood-300 mb-2">商業工程</h3>
+        <p class="text-wood-400 text-sm mb-4">大面積項目、高耐用規格</p>
+        <a href="#contact" class="text-accent font-semibold hover:underline">獲取報價 →</a>
+      </div>
+      <div class="bg-white rounded-lg p-6 shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-bold text-wood-300 mb-2">售後保養</h3>
+        <p class="text-wood-400 text-sm mb-4">定期保養、維修服務、延長壽命</p>
+        <a href="#contact" class="text-accent font-semibold hover:underline">了解詳情 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: PORTFOLIO -->
+<section id="portfolio" class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-center text-wood-300 mb-4">完成項目</h2>
+    <p class="text-center text-wood-400 mb-12">真實案例見證專業品質</p>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="group relative overflow-hidden rounded-lg shadow-lg">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="[PLACEHOLDER - 項目案例圖片]" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+          <span class="text-white font-semibold">[項目案例 1 - 住宅]</span>
+        </div>
+      </div>
+      <div class="group relative overflow-hidden rounded-lg shadow-lg">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80" alt="[PLACEHOLDER - 項目案例圖片]" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+          <span class="text-white font-semibold">[項目案例 2 - 商業]</span>
+        </div>
+      </div>
+      <div class="group relative overflow-hidden rounded-lg shadow-lg">
+        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80" alt="[PLACEHOLDER - 項目案例圖片]" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+          <span class="text-white font-semibold">[項目案例 3 - 辦公室]</span>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-10">
+      <a href="#contact" class="inline-block bg-accent hover:bg-accent-dark text-white px-8 py-3 rounded-lg font-semibold transition">查看更多項目</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: HOW IT WORKS -->
+<section class="py-20 bg-wood-50">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-center text-wood-300 mb-12">服務流程</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="text-center">
+        <div class="w-20 h-20 mx-auto bg-accent rounded-full flex items-center justify-center text-white text-3xl font-bold mb-4">1</div>
+        <h3 class="text-xl font-bold text-wood-300 mb-2">上門評估</h3>
+        <p class="text-wood-400 text-sm">免費現場度尺<br>了解需求</p>
+      </div>
+      <div class="text-center">
+        <div class="w-20 h-20 mx-auto bg-accent rounded-full flex items-center justify-center text-white text-3xl font-bold mb-4">2</div>
+        <h3 class="text-xl font-bold text-wood-300 mb-2">提供報價</h3>
+        <p class="text-wood-400 text-sm">透明報價<br>無隱藏收費</p>
+      </div>
+      <div class="text-center">
+        <div class="w-20 h-20 mx-auto bg-accent rounded-full flex items-center justify-center text-white text-3xl font-bold mb-4">3</div>
+        <h3 class="text-xl font-bold text-wood-300 mb-2">專業安裝</h3>
+        <p class="text-wood-400 text-sm">快速整潔施工<br>準時完成</p>
+      </div>
+      <div class="text-center">
+        <div class="w-20 h-20 mx-auto bg-accent rounded-full flex items-center justify-center text-white text-3xl font-bold mb-4">4</div>
+        <h3 class="text-xl font-bold text-wood-300 mb-2">售後保養</h3>
+        <p class="text-wood-400 text-sm">定期跟進<br>維修保障</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: FAQ -->
+<section id="faq" class="py-20 bg-white">
+  <div class="max-w-3xl mx-auto px-6">
+    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-center text-wood-300 mb-12">常見問題</h2>
+    <div class="space-y-4">
+      <div class="border border-wood-100 rounded-lg overflow-hidden">
+        <button onclick="toggleAccordion(0)" class="w-full text-left px-6 py-4 bg-wood-50 hover:bg-wood-100 font-semibold text-wood-300 flex justify-between items-center">
+          <span>地板安裝需要多長時間？</span>
+          <span class="text-2xl">+</span>
+        </button>
+        <div class="accordion-content px-6 py-0">
+          <p class="text-wood-400 py-4">一般住宅項目約需2-5個工作天，視乎面積大小及地板類型。我們會在報價時提供準確時間表。</p>
+        </div>
+      </div>
+      <div class="border border-wood-100 rounded-lg overflow-hidden">
+        <button onclick="toggleAccordion(1)" class="w-full text-left px-6 py-4 bg-wood-50 hover:bg-wood-100 font-semibold text-wood-300 flex justify-between items-center">
+          <span>SPC地板與實木地板有什麼分別？</span>
+          <span class="text-2xl">+</span>
+        </button>
+        <div class="accordion-content px-6 py-0">
+          <p class="text-wood-400 py-4">SPC地板防水防潮、耐用易打理，適合香港氣候；實木地板質感天然、腳感溫暖，提升家居品味。我們會根據您的需求推薦最合適選擇。</p>
+        </div>
+      </div>
+      <div class="border border-wood-100 rounded-lg overflow-hidden">
+        <button onclick="toggleAccordion(2)" class="w-full text-left px-6 py-4 bg-wood-50 hover:bg-wood-100 font-semibold text-wood-300 flex justify-between items-center">
+          <span>報價是否包含搬運及清潔？</span>
+          <span class="text-2xl">+</span>
+        </button>
+        <div class="accordion-content px-6 py-0">
+          <p class="text-wood-400 py-4">是的，我們的報價包含材料搬運、專業安裝及施工後清潔，讓您安心無憂。</p>
+        </div>
+      </div>
+      <div class="border border-wood-100 rounded-lg overflow-hidden">
+        <button onclick="toggleAccordion(3)" class="w-full text-left px-6 py-4 bg-wood-50 hover:bg-wood-100 font-semibold text-wood-300 flex justify-between items-center">
+          <span>提供保養服務嗎？</span>
+          <span class="text-2xl">+</span>
+        </button>
+        <div class="accordion-content px-6 py-0">
+          <p class="text-wood-400 py-4">我們提供完善售後服務，包括定期保養建議、維修支援及長期保養方案。</p>
+        </div>
+      </div>
+      <div class="border border-wood-100 rounded-lg overflow-hidden">
+        <button onclick="toggleAccordion(4)" class="w-full text-left px-6 py-4 bg-wood-50 hover:bg-wood-100 font-semibold text-wood-300 flex justify-between items-center">
+          <span>如何獲取報價？</span>
+          <span class="text-2xl">+</span>
+        </button>
+        <div class="accordion-content px-6 py-0">
+          <p class="text-wood-400 py-4">您可以透過網站填寫表格、WhatsApp 或致電聯絡我們，我們會安排免費上門度尺及提供詳細報價。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: ABOUT US -->
+<section id="about" class="py-20 bg-wood-50">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-wood-300 mb-6">關於 Jupiter's Design</h2>
+        <p class="text-wood-400 mb-4">Jupiter's Design Limited 成立於 [PLACEHOLDER - 年份]，專注於為香港家庭及商業客戶提供專業地板安裝服務。</p>
+        <p class="text-wood-400 mb-4">我們擁有超過15年行業經驗，完成超過800個項目，服務範圍涵蓋住宅、商業及設計公司合作。</p>
+        <p class="text-wood-400 mb-6">我們的使命是以專業技術、優質材料及貼心服務，為每位客戶打造理想家居。</p>
+        <div class="flex flex-wrap gap-4">
+          <div class="flex items-center gap-2">
+            <span class="text-accent text-2xl">✓</span>
+            <span class="font-semibold text-wood-300">持牌專業團隊</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-accent text-2xl">✓</span>
+            <span class="font-semibold text-wood-300">優質材料供應</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-accent text-2xl">✓</span>
+            <span class="font-semibold text-wood-300">完善售後保障</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <img src="https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=600&q=80" alt="[PLACEHOLDER - 公司/團隊照片]" class="rounded-lg shadow-xl">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9: CONTACT FORM -->
+<section id="contact" class="py-20 bg-white">
+  <div class="max-w-2xl mx-auto px-6">
+    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-center text-wood-300 mb-4">免費報價查詢</h2>
+    <p class="text-center text-wood-400 mb-8">填寫以下資料，我們會於24小時內回覆</p>
+    <form id="contactForm" class="bg-wood-50 rounded-xl p-8 shadow-lg">
+      <div class="mb-6">
+        <label class="block text-wood-300 font-semibold mb-2">姓名 *</label>
+        <input type="text" required class="w-full px-4 py-3 border border-wood-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent">
+      </div>
+      <div class="mb-6">
+        <label class="block text-wood-300 font-semibold mb-2">聯絡電話 *</label>
+        <input type="tel" required class="w-full px-4 py-3 border border-wood-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent">
+      </div>
+      <div class="mb-6">
+        <label class="block text-wood-300 font-semibold mb-2">地區 *</label>
+        <select required class="w-full px-4 py-3 border border-wood-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent">
+          <option value="">請選擇</option>
+          <option>香港島</option>
+          <option>九龍</option>
+          <option>新界</option>
+          <option>離島</option>
+        </select>
+      </div>
+      <div class="mb-6">
+        <label class="block text-wood-300 font-semibold mb-2">項目類型 *</label>
+        <select required class="w-full px-4 py-3 border border-wood-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent">
+          <option value="">請選擇</option>
+          <option>住宅安裝</option>
+          <option>商業工程</option>
+          <option>地板翻新</option>
+          <option>設計公司合作</option>
+          <option>其他</option>
+        </select>
+      </div>
+      <button type="submit" class="w-full bg-accent hover:bg-accent-dark text-white py-4 rounded-lg font-bold text-lg transition shadow-lg">
+        提交查詢
+      </button>
+      <p class="text-center text-sm text-wood-400 mt-4">✓ 我們會於24小時內回覆您的查詢</p>
+    </form>
+  </div>
+</section>
+
+<!-- SECTION 10: FOOTER -->
+<footer class="bg-wood-300 text-white py-12">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+      <div>
+        <h3 class="font-serif text-2xl font-bold mb-4">Jupiter's Design</h3>
+        <p class="text-white/80 text-sm">專業SPC地板安裝<br>香港地板工程專家</p>
+      </div>
+      <div>
+        <h4 class="font-bold mb-3">快速連結</h4>
+        <ul class="space-y-2 text-sm text-white/80">
+          <li><a href="#services" class="hover:text-white">服務項目</a></li>
+          <li><a href="#portfolio" class="hover:text-white">完成項目</a></li>
+          <li><a href="#about" class="hover:text-white">關於我們</a></li>
+          <li><a href="#faq" class="hover:text-white">常見問題</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-3">聯絡方式</h4>
+        <ul class="space-y-2 text-sm text-white/80">
+          <li>📞 <a href="tel:+85295715155" class="hover:text-white">+852 9571 5155</a></li>
+          <li>💬 <a href="https://wa.me/85295715155" class="hover:text-white">WhatsApp 查詢</a></li>
+          <li>📷 <a href="https://www.instagram.com/jupitersdesign.hk" target="_blank" class="hover:text-white">Instagram</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-3">服務時間</h4>
+        <p class="text-sm text-white/80">星期一至六<br>上午9時 - 下午6時</p>
+      </div>
+    </div>
+    <div class="border-t border-white/20 pt-8 text-center text-sm text-white/60">
+      <p>&copy; 2026 Jupiter's Design Limited. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- JavaScript -->
+<script>
+  // Mobile menu toggle
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('hidden');
+  }
+
+  // FAQ accordion
+  function toggleAccordion(index) {
+    const contents = document.querySelectorAll('.accordion-content');
+    const buttons = document.querySelectorAll('#faq button span:last-child');
+    
+    contents.forEach((content, i) => {
+      if (i === index) {
+        content.classList.toggle('active');
+        buttons[i].textContent = content.classList.contains('active') ? '−' : '+';
+      } else {
+        content.classList.remove('active');
+        buttons[i].textContent = '+';
+      }
+    });
+  }
+
+  // Form submission
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('感謝您的查詢！我們會盡快與您聯絡。\n\n您也可以直接 WhatsApp 聯絡我們：+852 9571 5155');
+    this.reset();
+  });
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href !== '#') {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Close mobile menu if open
+          document.getElementById('mobileMenu').classList.add('hidden');
+        }
+      }
+    });
+  });
+</script>
+
+</body>
 </html>
