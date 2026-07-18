@@ -1,180 +1,228 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
-import WhatsAppCTA from '../../components/WhatsAppCTA.astro';
 
 const projects = [
   {
     number: '01',
-    type: 'Residential',
-    title: 'Natural grain, quietly grounded',
-    location: 'Private Residence · Hong Kong',
+    category: 'Private Residence',
+    title: 'Let natural grain become the backdrop to daily life.',
+    detail: 'SPC Flooring · Hong Kong',
     image: '/images/projects/project-residential-01.jpg',
-    className: 'project-card--large',
+    layout: 'editorial-project--wide',
   },
   {
     number: '02',
-    type: 'Commercial',
-    title: 'Room to work, space to breathe',
-    location: 'Commercial Space · Hong Kong',
+    category: 'Commercial Space',
+    title: 'A quiet foundation for the everyday.',
+    detail: 'Flooring Construction · Hong Kong',
     image: '/images/projects/project-commercial-01.jpg',
-    className: 'project-card--small',
+    layout: 'editorial-project--portrait',
   },
   {
     number: '03',
-    type: 'Outdoor',
-    title: 'Extended into light and air',
-    location: 'Outdoor Terrace · Hong Kong',
+    category: 'Outdoor Terrace',
+    title: 'Extended into light, air and time.',
+    detail: 'Outdoor Flooring · Hong Kong',
     image: '/images/projects/project-outdoor-01.jpg',
-    className: 'project-card--wide',
+    layout: 'editorial-project--wide editorial-project--offset',
   },
 ];
 
-const faqs = [
+const process = [
   {
-    question: 'Is SPC flooring suitable for Hong Kong’s humid climate?',
-    answer:
-      'Yes. SPC flooring is stable, moisture-resistant and easy to maintain. We assess your subfloor condition, humidity and lifestyle before recommending a suitable approach.',
+    number: '01',
+    title: 'Conversation',
+    description: 'We begin with your space, photographs and first thoughts.',
   },
   {
-    question: 'Can you arrange a site visit and quotation?',
-    answer:
-      'Yes. Send us photos, a floor plan or approximate dimensions on WhatsApp. We will understand your needs first, then arrange a suitable site inspection and quotation process.',
+    number: '02',
+    title: 'Understanding',
+    description: 'We see the subfloor, light and everyday movement on site.',
   },
   {
-    question: 'How long does a flooring project take?',
-    answer:
-      'Timing depends on the project area, subfloor condition, selected materials and site coordination. We will outline the expected schedule once the scope is confirmed.',
+    number: '03',
+    title: 'Selection',
+    description: 'We find the right balance of material, proportion and endurance.',
   },
   {
-    question: 'Where can outdoor flooring be installed?',
-    answer:
-      'Outdoor flooring can be used for terraces, rooftops, podiums and gardens. We consider sunlight, drainage, frequency of use and the surrounding conditions.',
+    number: '04',
+    title: 'Completion',
+    description: 'Careful finishing allows flooring to belong naturally to the space.',
   },
 ];
 ---
 
 <BaseLayout
-  title="Jupiter’s Design Limited | Flooring Specialists in Hong Kong"
-  description="Jupiter’s Design Limited delivers SPC flooring, outdoor flooring and flooring construction for thoughtfully designed residential and commercial spaces in Hong Kong."
+  title="Jupiter’s Design Limited | Flooring in Hong Kong"
+  description="Jupiter’s Design Limited delivers considered SPC flooring, outdoor flooring and flooring construction for residential and commercial spaces in Hong Kong."
   lang="en"
   canonicalPath="/en/"
 >
   <Header lang="en" />
 
   <main id="top">
-    <section class="hero">
-      <div class="hero__image" role="img" aria-label="Jupiter’s Design flooring project">
-        <div class="hero__overlay"></div>
-      </div>
+    <section class="editorial-hero">
+      <div class="editorial-hero__image" aria-hidden="true"></div>
+      <div class="editorial-hero__veil" aria-hidden="true"></div>
 
-      <div class="hero__content page-shell">
-        <p class="eyebrow hero__eyebrow">Jupiter’s Design Limited · Hong Kong</p>
+      <div class="editorial-hero__content editorial-shell">
+        <p class="editorial-kicker">Jupiter’s Design Limited · Hong Kong</p>
 
         <h1>
-          Grounded in material.<br />
-          <em>Defined by detail.</em>
+          Flooring that lets<br />
+          a space <em>be still.</em>
         </h1>
 
-        <div class="hero__bottom">
-          <p>Flooring is never just a surface.<br />It shapes the pace, light and quiet of a space.</p>
-          <WhatsAppCTA label="Start your flooring project" />
+        <div class="editorial-hero__footer">
+          <p>SPC Flooring · Outdoor Flooring · Construction</p>
+          <a href="#approach">Explore below <span>↓</span></a>
         </div>
       </div>
-
-      <a class="hero__scroll" href="#about" aria-label="Scroll to about">
-        <span>Scroll to explore</span>
-        <i></i>
-      </a>
     </section>
 
-    <section id="about" class="intro section-space">
-      <div class="page-shell intro__grid">
-        <div data-reveal>
-          <p class="eyebrow">01 · Our Approach</p>
-        </div>
+    <section id="approach" class="editorial-manifesto">
+      <div class="editorial-shell">
+        <p class="editorial-kicker" data-reveal>01 · Our Approach</p>
 
-        <div class="intro__copy" data-reveal>
-          <p class="display-copy">
-            Good flooring does not ask<br />
-            to be noticed. It lets material,<br />
-            proportion and detail shape<br />
-            a space for everyday life.
+        <div class="editorial-manifesto__statement" data-reveal>
+          <p>
+            Good flooring<br />
+            does not ask for attention.<br />
+            It lets everyday life<br />
+            <em>unfold naturally.</em>
           </p>
+        </div>
 
-          <div class="intro__details">
-            <p>
-              Jupiter’s Design Limited specialises in SPC flooring, outdoor flooring
-              and flooring construction for thoughtfully considered residential and commercial spaces in Hong Kong.
+        <div class="editorial-manifesto__note" data-reveal>
+          <p>
+            Jupiter’s Design Limited specialises in SPC flooring, outdoor flooring
+            and flooring construction. We begin on site, considering how materials
+            live alongside light, movement and time.
+          </p>
+          <a class="editorial-text-link" href="#contact">Begin a conversation <span>↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="editorial-practices">
+      <article class="editorial-practice editorial-practice--dark">
+        <div class="editorial-shell editorial-practice__inner">
+          <div class="editorial-practice__index" data-reveal>
+            <span>02</span>
+            <span>Practice</span>
+          </div>
+
+          <div class="editorial-practice__copy" data-reveal>
+            <p class="editorial-kicker">SPC Flooring</p>
+            <h2>
+              Stability does not mean<br />
+              <em>losing warmth.</em>
+            </h2>
+            <p class="editorial-practice__description">
+              Flooring with durability, stability and a natural presence for interiors used every day.
             </p>
-
-            <a class="text-link" href="#contact">
-              Meet Jupiter’s Design <span>↗</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="services" class="services section-space section-space--dark">
-      <div class="page-shell">
-        <div class="section-heading" data-reveal>
-          <p class="eyebrow">02 · What We Do</p>
-          <h2>Start with material.<br /><em>Give every step a reason.</em></h2>
-        </div>
-
-        <div class="services__list">
-          <article class="service-item" data-reveal>
-            <span class="service-item__number">01</span>
-            <div>
-              <h3>SPC Flooring</h3>
-              <p>Stable, durable and naturally composed flooring solutions for residential and commercial interiors.</p>
-            </div>
-            <span class="service-item__arrow">↗</span>
-          </article>
-
-          <article class="service-item" data-reveal>
-            <span class="service-item__number">02</span>
-            <div>
-              <h3>Outdoor Flooring</h3>
-              <p>Thoughtful solutions for terraces, rooftops and exterior spaces, considering sun, drainage and durability.</p>
-            </div>
-            <span class="service-item__arrow">↗</span>
-          </article>
-
-          <article class="service-item" data-reveal>
-            <span class="service-item__number">03</span>
-            <div>
-              <h3>Flooring Construction</h3>
-              <p>From site assessment and subfloor preparation to material selection and finishing details, managed with clarity.</p>
-            </div>
-            <span class="service-item__arrow">↗</span>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects" class="projects section-space">
-      <div class="page-shell">
-        <div class="projects__top" data-reveal>
-          <div class="section-heading">
-            <p class="eyebrow">03 · Selected Works</p>
-            <h2>Spaces become complete<br /><em>when they are lived in.</em></h2>
           </div>
 
-          <p>Residential, commercial and outdoor spaces.<br />Every project begins by understanding its setting.</p>
+          <a
+            class="editorial-arrow-link"
+            href="https://wa.me/85295715155"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-reveal
+          >
+            WhatsApp Enquiry <span>↗</span>
+          </a>
         </div>
 
-        <div class="projects__grid">
+        <div class="editorial-practice__image editorial-practice__image--spc" aria-hidden="true"></div>
+      </article>
+
+      <article class="editorial-practice editorial-practice--light">
+        <div class="editorial-practice__image editorial-practice__image--outdoor" aria-hidden="true"></div>
+
+        <div class="editorial-shell editorial-practice__inner">
+          <div class="editorial-practice__index" data-reveal>
+            <span>03</span>
+            <span>Practice</span>
+          </div>
+
+          <div class="editorial-practice__copy" data-reveal>
+            <p class="editorial-kicker">Outdoor Flooring</p>
+            <h2>
+              Give space back<br />
+              <em>to light and air.</em>
+            </h2>
+            <p class="editorial-practice__description">
+              For terraces, rooftops and platforms, materials respond to sun, drainage and the changing seasons.
+            </p>
+          </div>
+
+          <a
+            class="editorial-arrow-link"
+            href="https://wa.me/85295715155"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-reveal
+          >
+            WhatsApp Enquiry <span>↗</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="editorial-practice editorial-practice--earth">
+        <div class="editorial-shell editorial-practice__inner">
+          <div class="editorial-practice__index" data-reveal>
+            <span>04</span>
+            <span>Practice</span>
+          </div>
+
+          <div class="editorial-practice__copy" data-reveal>
+            <p class="editorial-kicker">Flooring Construction</p>
+            <h2>
+              What remains unseen<br />
+              <em>deserves care too.</em>
+            </h2>
+            <p class="editorial-practice__description">
+              From subfloor preparation and material proportion to every final junction, work is completed with quiet precision.
+            </p>
+          </div>
+
+          <a
+            class="editorial-arrow-link"
+            href="https://wa.me/85295715155"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-reveal
+          >
+            WhatsApp Enquiry <span>↗</span>
+          </a>
+        </div>
+
+        <div class="editorial-practice__image editorial-practice__image--construction" aria-hidden="true"></div>
+      </article>
+    </section>
+
+    <section id="projects" class="editorial-projects">
+      <div class="editorial-shell">
+        <div class="editorial-projects__intro">
+          <p class="editorial-kicker" data-reveal>05 · Selected Spaces</p>
+          <h2 data-reveal>
+            The character of a space<br />
+            <em>begins underfoot.</em>
+          </h2>
+        </div>
+
+        <div class="editorial-projects__list">
           {projects.map((project) => (
-            <article class:list={['project-card', project.className]} data-reveal>
-              <div class="project-card__image">
-                <img src={project.image} alt={`${project.title} | ${project.type}`} loading="lazy" />
+            <article class:list={['editorial-project', project.layout]} data-reveal>
+              <div class="editorial-project__image">
+                <img src={project.image} alt={`${project.title} | ${project.category}`} loading="lazy" />
               </div>
 
-              <div class="project-card__meta">
-                <span>{project.number} · {project.type}</span>
-                <span>{project.location}</span>
+              <div class="editorial-project__meta">
+                <span>{project.number} · {project.category}</span>
+                <span>{project.detail}</span>
               </div>
 
               <h3>{project.title}</h3>
@@ -182,151 +230,88 @@ const faqs = [
           ))}
         </div>
 
-        <div class="projects__footer" data-reveal>
-          <p>Your space can begin with a better foundation.</p>
-          <WhatsAppCTA label="Discuss your project" secondary={true} />
-        </div>
+        <a
+          class="editorial-text-link editorial-projects__link"
+          href="https://wa.me/85295715155"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-reveal
+        >
+          Discuss your space with us <span>↗</span>
+        </a>
       </div>
     </section>
 
-    <section class="image-break" aria-label="Flooring material detail">
-      <div class="image-break__image"></div>
-      <div class="image-break__caption page-shell">
+    <section class="editorial-material">
+      <div class="editorial-material__image" aria-hidden="true"></div>
+      <div class="editorial-shell editorial-material__caption">
         <span>Material · Light · Detail</span>
         <span>Jupiter’s Design Limited</span>
       </div>
     </section>
 
-    <section id="why-us" class="why-us section-space">
-      <div class="page-shell why-us__grid">
-        <div class="section-heading" data-reveal>
-          <p class="eyebrow">04 · Why Jupiter’s</p>
-          <h2>Beyond the build,<br /><em>we care how it feels.</em></h2>
+    <section class="editorial-process">
+      <div class="editorial-shell">
+        <div class="editorial-process__intro">
+          <p class="editorial-kicker" data-reveal>06 · A Considered Process</p>
+          <h2 data-reveal>
+            From a first thought<br />
+            <em>to a finished floor.</em>
+          </h2>
         </div>
 
-        <div class="why-us__list">
-          <article data-reveal>
-            <span>01</span>
-            <h3>Site-first thinking</h3>
-            <p>We begin with your subfloor, natural light, movement and daily use, not a one-size-fits-all solution.</p>
-          </article>
-
-          <article data-reveal>
-            <span>02</span>
-            <h3>Finishing matters</h3>
-            <p>The meeting points between flooring, walls, doors, cabinetry and materials define whether a space feels resolved.</p>
-          </article>
-
-          <article data-reveal>
-            <span>03</span>
-            <h3>Clear communication</h3>
-            <p>From enquiry to handover, we keep the process considered, clear and responsive at every important stage.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="process" class="process section-space section-space--sand">
-      <div class="page-shell">
-        <div class="section-heading" data-reveal>
-          <p class="eyebrow">05 · Our Process</p>
-          <h2>From the first conversation<br /><em>to every final detail.</em></h2>
-        </div>
-
-        <ol class="process__list">
-          <li data-reveal>
-            <span>01</span>
-            <h3>Initial conversation</h3>
-            <p>Share photos, a floor plan or your initial requirements on WhatsApp so we can understand your space.</p>
-          </li>
-
-          <li data-reveal>
-            <span>02</span>
-            <h3>Site assessment</h3>
-            <p>We assess the subfloor, dimensions, moisture conditions and practical site considerations.</p>
-          </li>
-
-          <li data-reveal>
-            <span>03</span>
-            <h3>Material and quotation</h3>
-            <p>We propose materials and an installation approach suited to your use and the character of the space.</p>
-          </li>
-
-          <li data-reveal>
-            <span>04</span>
-            <h3>Installation and handover</h3>
-            <p>We complete the work to the agreed plan, with careful attention to finishing and the experience of the final space.</p>
-          </li>
+        <ol class="editorial-process__list">
+          {process.map((item) => (
+            <li data-reveal>
+              <span class="editorial-process__number">{item.number}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </li>
+          ))}
         </ol>
       </div>
     </section>
 
-    <section id="faq" class="faq section-space">
-      <div class="page-shell faq__grid">
-        <div class="section-heading" data-reveal>
-          <p class="eyebrow">06 · FAQ</p>
-          <h2>What you need to know,<br /><em>answered clearly.</em></h2>
-        </div>
-
-        <div class="faq__list" data-reveal>
-          {faqs.map((faq, index) => (
-            <details class="faq-item" open={index === 0}>
-              <summary>
-                <span>{faq.question}</span>
-                <span class="faq-item__icon">+</span>
-              </summary>
-              <p>{faq.answer}</p>
-            </details>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="contact">
-      <div class="page-shell contact__inner">
-        <p class="eyebrow">07 · Get In Touch</p>
+    <section id="contact" class="editorial-contact">
+      <div class="editorial-shell editorial-contact__inner">
+        <p class="editorial-kicker" data-reveal>07 · Get In Touch</p>
 
         <h2 data-reveal>
-          Let's begin with your space.<br />
+          Let’s begin with your space.<br />
           <em>Then make it right.</em>
         </h2>
 
-        <div class="contact__cta" data-reveal>
-          <WhatsAppCTA label="Contact us on WhatsApp" />
-          <p>Send us photos, a floor plan or your initial idea.<br />We will begin by understanding the space and what it needs.</p>
-        </div>
+        <a
+          class="editorial-contact__cta"
+          href="https://wa.me/85295715155"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-reveal
+        >
+          <span>Begin a conversation</span>
+          <span>↗</span>
+        </a>
 
-        <div class="contact__details">
+        <div class="editorial-contact__details" data-reveal>
           <a href="https://wa.me/85295715155" target="_blank" rel="noopener noreferrer">
             <span>WhatsApp</span>
             <strong>+852 9571 5155</strong>
           </a>
-
-          <a
-            href="https://www.instagram.com/jupitersdesign/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="https://www.instagram.com/jupitersdesign/" target="_blank" rel="noopener noreferrer">
             <span>Instagram</span>
             <strong>@jupitersdesign</strong>
           </a>
-
           <a href="mailto:info@jupitersdesign.com">
             <span>Email</span>
             <strong>info@jupitersdesign.com</strong>
-          </a>
-
-          <a href="https://www.jupitersdesign.com">
-            <span>Website</span>
-            <strong>jupitersdesign.com</strong>
           </a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="page-shell site-footer__inner">
+  <footer class="editorial-footer">
+    <div class="editorial-shell editorial-footer__inner">
       <p>© {new Date().getFullYear()} Jupiter’s Design Limited</p>
       <a href="#top">Back to top ↑</a>
       <p>Hong Kong</p>

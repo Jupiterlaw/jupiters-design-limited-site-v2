@@ -7,52 +7,40 @@ const { lang } = Astro.props;
 
 const content = {
   zh: {
-    home: '首頁',
-    about: '關於我們',
-    services: '服務範圍',
-    projects: '精選工程',
-    contact: '聯絡我們',
-    whatsapp: 'WhatsApp 查詢',
+    menu: '選單',
+    close: '關閉',
     language: 'EN',
     languageHref: '/en/',
-    menu: '開啟選單',
+    projects: '精選工程',
+    approach: '我們的方式',
+    services: '服務範圍',
+    contact: '聯絡我們',
+    whatsapp: 'WhatsApp 查詢',
+    menuLabel: '開啟選單',
   },
   en: {
-    home: 'Home',
-    about: 'About',
-    services: 'Services',
-    projects: 'Projects',
-    contact: 'Contact',
-    whatsapp: 'WhatsApp Enquiry',
+    menu: 'Menu',
+    close: 'Close',
     language: '中文',
     languageHref: '/',
-    menu: 'Open menu',
+    projects: 'Selected Spaces',
+    approach: 'Our Approach',
+    services: 'What We Do',
+    contact: 'Contact',
+    whatsapp: 'WhatsApp Enquiry',
+    menuLabel: 'Open menu',
   },
 }[lang];
-
-const navigation = [
-  { label: content.home, href: '#top' },
-  { label: content.about, href: '#about' },
-  { label: content.services, href: '#services' },
-  { label: content.projects, href: '#projects' },
-  { label: content.contact, href: '#contact' },
-];
 ---
 
-<header class="site-header">
+<header class="site-header site-header--editorial">
   <div class="site-header__inner">
-    <a class="brand" href="#top" aria-label="Jupiter's Design Limited">
-      <span class="brand__mark">JD</span>
-      <span class="brand__name">Jupiter’s<br />Design</span>
+    <a class="brand brand--editorial" href="#top" aria-label="Jupiter's Design Limited">
+      <span class="brand__name">Jupiter’s Design</span>
+      <span class="brand__descriptor">Flooring · Hong Kong</span>
     </a>
 
-    <nav class="desktop-nav" aria-label={lang === 'zh' ? '主要導覽' : 'Main navigation'}>
-      {navigation.map((item) => (
-        <a href={item.href}>{item.label}</a>
-      ))}
-    </nav>
-
-    <div class="site-header__actions">
+    <div class="site-header__actions site-header__actions--editorial">
       <a
         class="language-switch"
         href={content.languageHref}
@@ -61,67 +49,80 @@ const navigation = [
         {content.language}
       </a>
 
-      <a
-        class="header-whatsapp"
-        href="https://wa.me/85295715155"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {content.whatsapp}
-      </a>
-
       <button
-        class="menu-toggle"
+        class="menu-toggle menu-toggle--editorial"
         type="button"
-        aria-label={content.menu}
+        aria-label={content.menuLabel}
         aria-expanded="false"
         data-menu-toggle
       >
-        <span></span>
-        <span></span>
+        <span class="menu-toggle__label" data-menu-label>{content.menu}</span>
+        <span class="menu-toggle__lines" aria-hidden="true">
+          <i></i>
+          <i></i>
+        </span>
       </button>
     </div>
   </div>
 
-  <div class="mobile-menu" data-mobile-menu>
-    <nav aria-label={lang === 'zh' ? '流動版主要導覽' : 'Mobile main navigation'}>
-      {navigation.map((item) => (
-        <a href={item.href}>{item.label}</a>
-      ))}
+  <div class="editorial-menu" data-mobile-menu aria-hidden="true">
+    <div class="editorial-menu__inner">
+      <p class="editorial-menu__eyebrow">Jupiter’s Design Limited</p>
 
-      <a href={content.languageHref}>
-        {lang === 'zh' ? 'English Version' : '繁體中文版本'}
-      </a>
+      <nav aria-label={lang === 'zh' ? '主要導覽' : 'Main navigation'}>
+        <a href="#top">01 <span>{lang === 'zh' ? '首頁' : 'Home'}</span></a>
+        <a href="#approach">02 <span>{content.approach}</span></a>
+        <a href="#services">03 <span>{content.services}</span></a>
+        <a href="#projects">04 <span>{content.projects}</span></a>
+        <a href="#contact">05 <span>{content.contact}</span></a>
+      </nav>
 
-      <a
-        class="mobile-menu__whatsapp"
-        href="https://wa.me/85295715155"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {content.whatsapp}
-      </a>
-    </nav>
+      <div class="editorial-menu__footer">
+        <a
+          href="https://wa.me/85295715155"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {content.whatsapp} <span>↗</span>
+        </a>
+
+        <a href={content.languageHref}>
+          {lang === 'zh' ? 'English Version' : '繁體中文版本'} <span>↗</span>
+        </a>
+      </div>
+    </div>
   </div>
 </header>
 
 <script>
   const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
   const menu = document.querySelector<HTMLElement>('[data-mobile-menu]');
+  const menuLabel = document.querySelector<HTMLElement>('[data-menu-label]');
   const menuLinks = menu?.querySelectorAll('a');
+  const isChinese = document.documentElement.lang === 'zh-HK';
 
   const closeMenu = () => {
     toggle?.setAttribute('aria-expanded', 'false');
     menu?.classList.remove('is-open');
+    menu?.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('menu-open');
+    if (menuLabel) {
+      menuLabel.textContent = isChinese ? '選單' : 'Menu';
+    }
   };
 
   toggle?.addEventListener('click', () => {
     const isOpen = toggle.getAttribute('aria-expanded') === 'true';
-
     toggle.setAttribute('aria-expanded', String(!isOpen));
     menu?.classList.toggle('is-open', !isOpen);
+    menu?.setAttribute('aria-hidden', String(isOpen));
     document.body.classList.toggle('menu-open', !isOpen);
+
+    if (menuLabel) {
+      menuLabel.textContent = !isOpen
+        ? (isChinese ? '關閉' : 'Close')
+        : (isChinese ? '選單' : 'Menu');
+    }
   });
 
   menuLinks?.forEach((link) => link.addEventListener('click', closeMenu));
