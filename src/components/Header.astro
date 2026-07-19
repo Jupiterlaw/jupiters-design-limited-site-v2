@@ -71,56 +71,55 @@ const content = isChinese
       </a>
 
       <button
-        class="menu-toggle menu-toggle--editorial"
-        type="button"
-        aria-label={content.menuLabel}
-        aria-expanded="false"
-        data-menu-toggle
-      >
-        <span class="menu-toggle__label" data-menu-label>{content.menu}</span>
-        <span class="menu-toggle__lines" aria-hidden="true">
-          <i></i>
-          <i></i>
-        </span>
-      </button>
-    </div>
-  </div>
-
-  <div class="editorial-menu" data-mobile-menu aria-hidden="true">
-    <div class="editorial-menu__inner">
-      <p class="editorial-menu__eyebrow">Jupiter’s Design Limited</p>
-
-      <nav aria-label={content.navLabel}>
-        <a href={content.homeHref}><span>01</span><span>{content.home}</span></a>
-        <a href={`${content.homeHref}#approach`}><span>02</span><span>{content.approach}</span></a>
-        <a href={`${content.homeHref}#services`}><span>03</span><span>{content.services}</span></a>
-        <a href={`${content.homeHref}#projects`}><span>04</span><span>{content.projects}</span></a>
-        <a href={`${content.homeHref}#contact`}><span>05</span><span>{content.contact}</span></a>
-        <a href={content.estimateHref}><span>06</span><span>{content.estimate}</span></a>
-      </nav>
-
-      <div class="editorial-menu__footer">
-        <a
-          href="https://wa.me/85295715155"
-          target="_blank"
-          rel="noopener noreferrer"
+          class="menu-toggle menu-toggle--editorial"
+          type="button"
+          aria-label={content.menuLabel}
+          aria-expanded="false"
+          data-menu-toggle
         >
-          {content.whatsapp} <span>↗</span>
-        </a>
-
-        <a href={content.languageHref}>
-          {content.languageVersion} <span>↗</span>
-        </a>
+          <span class="menu-toggle__label" data-menu-label>{content.menu}</span>
+          <span class="menu-toggle__lines" aria-hidden="true">
+            <i></i>
+            <i></i>
+          </span>
+        </button>
       </div>
-    </div>
-  </div>
-</header>
+      </div>
+      </header>
+
+      <div class="editorial-menu" data-mobile-menu aria-hidden="true">
+      <div class="editorial-menu__inner">
+        <p class="editorial-menu__eyebrow">Jupiter’s Design Limited</p>
+
+        <nav aria-label={content.navLabel}>
+          <a href={content.homeHref}><span>01</span><span>{content.home}</span></a>
+          <a href={`${content.homeHref}#approach`}><span>02</span><span>{content.approach}</span></a>
+          <a href={`${content.homeHref}#services`}><span>03</span><span>{content.services}</span></a>
+          <a href={`${content.homeHref}#projects`}><span>04</span><span>{content.projects}</span></a>
+          <a href={`${content.homeHref}#contact`}><span>05</span><span>{content.contact}</span></a>
+          <a href={content.estimateHref}><span>06</span><span>{content.estimate}</span></a>
+        </nav>
+
+        <div class="editorial-menu__footer">
+          <a
+            href="https://wa.me/85295715155"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {content.whatsapp} <span>↗</span>
+          </a>
+
+          <a href={content.languageHref}>
+            {content.languageVersion} <span>↗</span>
+          </a>
+        </div>
+      </div>
+      </div>
 
 <script>
   const toggle = document.querySelector('[data-menu-toggle]');
-  const headerRoot = toggle?.closest('header');
-  const menu = headerRoot?.querySelector('[data-mobile-menu]');
-  const menuLabel = headerRoot?.querySelector('[data-menu-label]');
+  const menu = document.querySelector('[data-mobile-menu]');
+  const menuLabel = menu?.querySelector('[data-menu-label]');
   const menuLinks = menu?.querySelectorAll('a');
   const isChinese = document.documentElement.lang === 'zh-HK';
 
