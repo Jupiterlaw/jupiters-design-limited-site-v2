@@ -125,7 +125,7 @@ const ui = {
     removalNote: '估算加 HK$40 / sq ft',
     summaryType: '目前選擇',
     summaryMinimum: '最低工程費',
-    packageRate: '材料及安裝估算',
+    packageRate: '材料與安裝全包',
     packageEstimate: '初步預算範圍',
     packageCta: '選擇此方案',
     badge: '最多人選',
@@ -151,7 +151,7 @@ const ui = {
     removalNote: 'Adds HK$40 / sq ft',
     summaryType: 'Currently selected',
     summaryMinimum: 'Minimum project fee',
-    packageRate: 'Material & installation',
+    packageRate: 'Material & installation included',
     packageEstimate: 'Indicative estimate',
     packageCta: 'Choose this package',
     badge: 'Most chosen',
@@ -274,7 +274,6 @@ const dictionary = isEn ? ui.en : ui['zh-HK'];
 
           <div class="calculator-package__rate">
             <span>{dictionary.packageRate}</span>
-            <strong data-rate>HK${packageItem.price.min}–${packageItem.price.max} <small>/ sq ft</small></strong>
           </div>
 
           <div class="calculator-package__estimate">
@@ -365,7 +364,7 @@ const dictionary = isEn ? ui.en : ui['zh-HK'];
       'zh-HK': {
         summaryType: '目前選擇',
         summaryMinimum: '最低工程費',
-        packageRate: '材料及安裝估算',
+        packageRate: '材料與安裝全包',
         packageEstimate: '初步預算範圍',
         packageCta: '選擇此方案',
         waGreeting: '你好，想查詢初步地板報價。',
@@ -379,7 +378,7 @@ const dictionary = isEn ? ui.en : ui['zh-HK'];
       en: {
         summaryType: 'Currently selected',
         summaryMinimum: 'Minimum project fee',
-        packageRate: 'Material & installation',
+        packageRate: 'Material & installation included',
         packageEstimate: 'Indicative estimate',
         packageCta: 'Choose this package',
         waGreeting: 'Hello, I would like a preliminary flooring quote.',
@@ -457,7 +456,6 @@ const dictionary = isEn ? ui.en : ui['zh-HK'];
           <p class="calculator-package__description">${description}</p>
           <div class="calculator-package__rate">
             <span>${t.packageRate}</span>
-            <strong>HK$${packageItem.price.min}–${packageItem.price.max} <small>/ sq ft</small></strong>
           </div>
           <div class="calculator-package__estimate">
             <span>${t.packageEstimate}</span>
