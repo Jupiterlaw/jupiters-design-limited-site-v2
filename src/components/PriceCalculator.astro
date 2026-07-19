@@ -1,0 +1,548 @@
+---
+interface PriceRange {
+  min: number;
+  max: number;
+}
+
+interface Package {
+  id: 'essential' | 'signature' | 'elevated';
+  label: string;
+  enLabel: string;
+  englishLabel: string;
+  description: string;
+  enDescription: string;
+  price: PriceRange;
+  featured?: boolean;
+}
+
+interface FlooringType {
+  label: string;
+  enLabel: string;
+  minimumCharge: number;
+  packages: Package[];
+}
+
+interface Props {
+  lang?: 'zh-HK' | 'en';
+}
+
+const { lang = 'zh-HK' } = Astro.props;
+const isEn = lang === 'en';
+
+const flooringTypes: Record<'spc' | 'outdoor', FlooringType> = {
+  spc: {
+    label: 'SPC 地板',
+    enLabel: 'SPC Flooring',
+    minimumCharge: 3000,
+    packages: [
+      {
+        id: 'essential',
+        label: '基礎之選',
+        enLabel: 'Essential',
+        englishLabel: 'Essential',
+        description: '實用、耐用，適合預算優先的空間。',
+        enDescription: 'Practical and durable, for spaces where budget leads.',
+        price: { min: 16, max: 20 },
+      },
+      {
+        id: 'signature',
+        label: '推薦之選',
+        enLabel: 'Signature',
+        englishLabel: 'Signature',
+        description: '在質感、耐用與預算之間取得平衡。',
+        enDescription: 'A balance of texture, endurance and budget.',
+        price: { min: 35, max: 39 },
+        featured: true,
+      },
+      {
+        id: 'elevated',
+        label: '質感之選',
+        enLabel: 'Elevated',
+        englishLabel: 'Elevated',
+        description: '為重視材料表情與完成細節的空間而設。',
+        enDescription: 'For spaces that prize material expression and finishing.',
+        price: { min: 48, max: 52 },
+      },
+    ],
+  },
+  outdoor: {
+    label: '戶外地板',
+    enLabel: 'Outdoor Flooring',
+    minimumCharge: 6000,
+    packages: [
+      {
+        id: 'essential',
+        label: '基礎之選',
+        enLabel: 'Essential',
+        englishLabel: 'Essential',
+        description: '兼顧戶外耐用度與實用預算。',
+        enDescription: 'Outdoor endurance with a practical budget.',
+        price: { min: 50, max: 55 },
+      },
+      {
+        id: 'signature',
+        label: '推薦之選',
+        enLabel: 'Signature',
+        englishLabel: 'Signature',
+        description: '為露台、天台與戶外平台提供平衡方案。',
+        enDescription: 'A balanced plan for terraces, roofs and outdoor platforms.',
+        price: { min: 110, max: 115 },
+        featured: true,
+      },
+      {
+        id: 'elevated',
+        label: '質感之選',
+        enLabel: 'Elevated',
+        englishLabel: 'Elevated',
+        description: '為重視細節、表面質感與戶外表現的空間而設。',
+        enDescription: 'For spaces that value detail, surface quality and outdoor presence.',
+        price: { min: 200, max: 220 },
+      },
+    ],
+  },
+};
+
+const calculatorConfig = {
+  minArea: 50,
+  maxArea: 2000,
+  step: 10,
+  defaultArea: 300,
+  removalRate: 40,
+  whatsappNumber: '85295715155',
+};
+
+// UI strings, per language
+const ui = {
+  'zh-HK': {
+    kicker: '01 · 初步估算',
+    introTitleA: '先了解一個',
+    introTitleB: '大概的預算。',
+    introBody: '選擇工程類型及預計面積，即時查看三個初步預算方案。最終報價會按現場基層、收口、拆除、搬運及實際工程範圍確認。',
+    typeLegend: '工程類型',
+    areaLabel: '預計施工面積',
+    areaHelper: '可用鍵盤方向鍵微調面積，每次 10 sq ft。',
+    removalTitle: '需要拆除舊地板',
+    removalNote: '估算加 HK$40 / sq ft',
+    summaryType: '目前選擇',
+    summaryMinimum: '最低工程費',
+    packageRate: '材料及安裝估算',
+    packageEstimate: '初步預算範圍',
+    packageCta: '選擇此方案',
+    badge: '最多人選',
+    noteTitle: '重要',
+    noteBody: '此工具只供初步預算參考，並非正式報價。最終報價須按現場量度、基層狀況、材料選擇、收口位置、拆除安排、搬運條件及工程範圍確認。',
+    waGreeting: '你好，想查詢初步地板報價。',
+    waArea: '預計面積',
+    waPackage: '方案',
+    waRemovalYes: '需要拆除舊地板',
+    waRemovalNo: '不需要拆除舊地板',
+    waEstimate: '網站初步預算',
+    waClosing: '請問可以安排進一步查詢或現場勘察嗎？',
+  },
+  en: {
+    kicker: '01 · Estimate Your Project',
+    introTitleA: 'A rough sense of',
+    introTitleB: 'the budget, first.',
+    introBody: 'Choose a project type and estimated area to see three indicative packages instantly. The final quote is confirmed on site — subfloor, edges, removal, logistics and exact scope.',
+    typeLegend: 'Project type',
+    areaLabel: 'Estimated area',
+    areaHelper: 'Use the arrow keys to adjust area in steps of 10 sq ft.',
+    removalTitle: 'Removal of existing flooring',
+    removalNote: 'Adds HK$40 / sq ft',
+    summaryType: 'Currently selected',
+    summaryMinimum: 'Minimum project fee',
+    packageRate: 'Material & installation',
+    packageEstimate: 'Indicative estimate',
+    packageCta: 'Choose this package',
+    badge: 'Most chosen',
+    noteTitle: 'Important',
+    noteBody: 'This tool is for indicative reference only, not a formal quote. The final quote is confirmed on site — measurements, subfloor condition, material choice, edge details, removal, logistics and scope.',
+    waGreeting: 'Hello, I would like a preliminary flooring quote.',
+    waArea: 'Estimated area',
+    waPackage: 'Package',
+    waRemovalYes: 'Removal of existing flooring needed',
+    waRemovalNo: 'No removal needed',
+    waEstimate: 'Website indicative estimate',
+    waClosing: 'Could we arrange a follow-up or site visit?',
+  },
+};
+
+const dictionary = isEn ? ui.en : ui['zh-HK'];
+---
+
+<section
+  class="price-calculator"
+  data-price-calculator
+  data-pricing={JSON.stringify(flooringTypes)}
+  data-config={JSON.stringify(calculatorConfig)}
+  data-lang={lang}
+>
+  <div class="editorial-shell">
+    <div class="price-calculator__intro">
+      <p class="editorial-kicker">{dictionary.kicker}</p>
+      <h1>
+        {dictionary.introTitleA}<br />
+        <em>{dictionary.introTitleB}</em>
+      </h1>
+      <p set:html={dictionary.introBody}></p>
+    </div>
+
+    <div class="price-calculator__controls">
+      <fieldset class="calculator-fieldset">
+        <legend>{dictionary.typeLegend}</legend>
+        <div class="calculator-type-switch" role="radiogroup" aria-label={dictionary.typeLegend}>
+          <label>
+            <input type="radio" name="flooring-type" value="spc" checked />
+            <span>{isEn ? flooringTypes.spc.enLabel : flooringTypes.spc.label}</span>
+          </label>
+          <label>
+            <input type="radio" name="flooring-type" value="outdoor" />
+            <span>{isEn ? flooringTypes.outdoor.enLabel : flooringTypes.outdoor.label}</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="calculator-area">
+        <div class="calculator-area__heading">
+          <label for="area-slider">{dictionary.areaLabel}</label>
+          <output for="area-slider" data-area-output>300 <small>sq ft</small></output>
+        </div>
+
+        <input
+          id="area-slider"
+          class="calculator-area__slider"
+          type="range"
+          min={calculatorConfig.minArea}
+          max={calculatorConfig.maxArea}
+          step={calculatorConfig.step}
+          value={calculatorConfig.defaultArea}
+          aria-describedby="area-helper"
+        />
+
+        <div class="calculator-area__range" aria-hidden="true">
+          <span>{calculatorConfig.minArea} sq ft</span>
+          <span>{calculatorConfig.maxArea.toLocaleString()} sq ft</span>
+        </div>
+
+        <p id="area-helper" class="calculator-area__helper">
+          {dictionary.areaHelper}
+        </p>
+      </div>
+
+      <label class="calculator-removal">
+        <input type="checkbox" data-removal-toggle />
+        <span class="calculator-removal__box" aria-hidden="true"></span>
+        <span>
+          <strong>{dictionary.removalTitle}</strong>
+          <small>{dictionary.removalNote}</small>
+        </span>
+      </label>
+    </div>
+
+    <div class="price-calculator__summary">
+      <div>
+        <span>{dictionary.summaryType}</span>
+        <strong data-summary-type>{isEn ? flooringTypes.spc.enLabel : flooringTypes.spc.label}</strong>
+      </div>
+      <div>
+        <span>{dictionary.summaryMinimum}</span>
+        <strong data-summary-minimum>HK$3,000</strong>
+      </div>
+      <div data-removal-summary hidden>
+        <span>{dictionary.removalTitle}</span>
+        <strong data-removal-amount>HK$0</strong>
+      </div>
+    </div>
+
+    <div class="calculator-packages" data-package-list aria-live="polite">
+      {flooringTypes.spc.packages.map((packageItem) => (
+        <article
+          class:list={['calculator-package', packageItem.featured && 'calculator-package--featured']}
+          data-package={packageItem.id}
+        >
+          {packageItem.featured && <p class="calculator-package__badge">{dictionary.badge}</p>}
+
+          <div class="calculator-package__top">
+            <span class="calculator-package__number">
+              {packageItem.id === 'essential' ? '01' : packageItem.id === 'signature' ? '02' : '03'}
+            </span>
+            <span class="calculator-package__english">{packageItem.englishLabel}</span>
+          </div>
+
+          <h2>{isEn ? packageItem.enLabel : packageItem.label}</h2>
+          <p class="calculator-package__description">{isEn ? packageItem.enDescription : packageItem.description}</p>
+
+          <div class="calculator-package__rate">
+            <span>{dictionary.packageRate}</span>
+            <strong data-rate>HK${packageItem.price.min}–${packageItem.price.max} <small>/ sq ft</small></strong>
+          </div>
+
+          <div class="calculator-package__estimate">
+            <span>{dictionary.packageEstimate}</span>
+            <strong data-estimate>HK$4,800 – HK$6,000</strong>
+          </div>
+
+          <a
+            class="calculator-package__cta"
+            href={`https://wa.me/${calculatorConfig.whatsappNumber}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-whatsapp={packageItem.id}
+          >
+            {dictionary.packageCta} <span>↗</span>
+          </a>
+        </article>
+      ))}
+    </div>
+
+    <div class="price-calculator__note">
+      <span>{dictionary.noteTitle}</span>
+      <p set:html={dictionary.noteBody}></p>
+    </div>
+  </div>
+</section>
+
+<script>
+  interface BrowserPriceRange {
+    min: number;
+    max: number;
+  }
+
+  interface BrowserPackage {
+    id: 'essential' | 'signature' | 'elevated';
+    label: string;
+    enLabel: string;
+    englishLabel: string;
+    description: string;
+    enDescription: string;
+    price: BrowserPriceRange;
+    featured?: boolean;
+  }
+
+  interface BrowserFlooringType {
+    label: string;
+    enLabel: string;
+    minimumCharge: number;
+    packages: BrowserPackage[];
+  }
+
+  interface BrowserCalculatorConfig {
+    minArea: number;
+    maxArea: number;
+    step: number;
+    defaultArea: number;
+    removalRate: number;
+    whatsappNumber: string;
+  }
+
+  interface BrowserUi {
+    summaryType: string;
+    summaryMinimum: string;
+    packageRate: string;
+    packageEstimate: string;
+    packageCta: string;
+    waGreeting: string;
+    waArea: string;
+    waPackage: string;
+    waRemovalYes: string;
+    waRemovalNo: string;
+    waEstimate: string;
+    waClosing: string;
+  }
+
+  const calculator = document.querySelector<HTMLElement>('[data-price-calculator]');
+
+  if (calculator) {
+    const pricing = JSON.parse(calculator.dataset.pricing ?? '{}') as Record<
+      'spc' | 'outdoor',
+      BrowserFlooringType
+    >;
+    const config = JSON.parse(calculator.dataset.config ?? '{}') as BrowserCalculatorConfig;
+    const lang = calculator.dataset.lang === 'en' ? 'en' : 'zh-HK';
+    const isEn = lang === 'en';
+
+    const ui: Record<'zh-HK' | 'en', BrowserUi> = {
+      'zh-HK': {
+        summaryType: '目前選擇',
+        summaryMinimum: '最低工程費',
+        packageRate: '材料及安裝估算',
+        packageEstimate: '初步預算範圍',
+        packageCta: '選擇此方案',
+        waGreeting: '你好，想查詢初步地板報價。',
+        waArea: '預計面積',
+        waPackage: '方案',
+        waRemovalYes: '需要拆除舊地板',
+        waRemovalNo: '不需要拆除舊地板',
+        waEstimate: '網站初步預算',
+        waClosing: '請問可以安排進一步查詢或現場勘察嗎？',
+      },
+      en: {
+        summaryType: 'Currently selected',
+        summaryMinimum: 'Minimum project fee',
+        packageRate: 'Material & installation',
+        packageEstimate: 'Indicative estimate',
+        packageCta: 'Choose this package',
+        waGreeting: 'Hello, I would like a preliminary flooring quote.',
+        waArea: 'Estimated area',
+        waPackage: 'Package',
+        waRemovalYes: 'Removal of existing flooring needed',
+        waRemovalNo: 'No removal needed',
+        waEstimate: 'Website indicative estimate',
+        waClosing: 'Could we arrange a follow-up or site visit?',
+      },
+    };
+    const t = ui[lang];
+
+    const slider = calculator.querySelector<HTMLInputElement>('#area-slider');
+    const typeInputs = calculator.querySelectorAll<HTMLInputElement>('input[name="flooring-type"]');
+    const removalToggle = calculator.querySelector<HTMLInputElement>('[data-removal-toggle]');
+    const areaOutput = calculator.querySelector<HTMLOutputElement>('[data-area-output]');
+    const typeOutput = calculator.querySelector<HTMLElement>('[data-summary-type]');
+    const minimumOutput = calculator.querySelector<HTMLElement>('[data-summary-minimum]');
+    const removalSummary = calculator.querySelector<HTMLElement>('[data-removal-summary]');
+    const removalAmount = calculator.querySelector<HTMLElement>('[data-removal-amount]');
+    const packagesContainer = calculator.querySelector<HTMLElement>('[data-package-list]');
+
+    const currency = new Intl.NumberFormat('en-HK', {
+      style: 'currency',
+      currency: 'HKD',
+      maximumFractionDigits: 0,
+    });
+
+    const getSelectedType = () => {
+      const selected = calculator.querySelector<HTMLInputElement>('input[name="flooring-type"]:checked');
+      return selected?.value === 'outdoor' ? 'outdoor' : 'spc';
+    };
+
+    const getArea = () => Number(slider?.value ?? config.defaultArea);
+    const hasRemoval = () => Boolean(removalToggle?.checked);
+
+    const calculateRange = (area: number, price: BrowserPriceRange, minimumCharge: number) => {
+      const removalCost = hasRemoval() ? area * config.removalRate : 0;
+
+      return {
+        min: Math.max(area * price.min, minimumCharge) + removalCost,
+        max: Math.max(area * price.max, minimumCharge) + removalCost,
+        removalCost,
+      };
+    };
+
+    const packageNumber = (id: BrowserPackage['id']) => {
+      if (id === 'essential') return '01';
+      if (id === 'signature') return '02';
+      return '03';
+    };
+
+    const createPackageCard = (
+      packageItem: BrowserPackage,
+      flooring: BrowserFlooringType,
+      area: number,
+    ) => {
+      const estimate = calculateRange(area, packageItem.price, flooring.minimumCharge);
+      const name = isEn ? packageItem.enLabel : packageItem.label;
+      const description = isEn ? packageItem.enDescription : packageItem.description;
+      const featuredClass = packageItem.featured ? ' calculator-package--featured' : '';
+      const badge = packageItem.featured
+        ? `<p class="calculator-package__badge">${t.packageCta ? 'Most chosen' : 'Most chosen'}</p>`
+        : '';
+
+      return `
+        <article class="calculator-package${featuredClass}" data-package="${packageItem.id}">
+          ${badge}
+          <div class="calculator-package__top">
+            <span class="calculator-package__number">${packageNumber(packageItem.id)}</span>
+            <span class="calculator-package__english">${packageItem.englishLabel}</span>
+          </div>
+          <h2>${name}</h2>
+          <p class="calculator-package__description">${description}</p>
+          <div class="calculator-package__rate">
+            <span>${t.packageRate}</span>
+            <strong>HK$${packageItem.price.min}–${packageItem.price.max} <small>/ sq ft</small></strong>
+          </div>
+          <div class="calculator-package__estimate">
+            <span>${t.packageEstimate}</span>
+            <strong>${currency.format(estimate.min)} – ${currency.format(estimate.max)}</strong>
+          </div>
+          <a
+            class="calculator-package__cta"
+            href="https://wa.me/${config.whatsappNumber}"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-whatsapp="${packageItem.id}"
+          >
+            ${t.packageCta} <span>↗</span>
+          </a>
+        </article>
+      `;
+    };
+
+    const refreshWhatsAppLinks = (
+      flooring: BrowserFlooringType,
+      area: number,
+    ) => {
+      calculator.querySelectorAll<HTMLAnchorElement>('[data-whatsapp]').forEach((link) => {
+        const selectedPackage = flooring.packages.find(
+          (packageItem) => packageItem.id === link.dataset.whatsapp,
+        );
+
+        if (!selectedPackage) return;
+
+        const estimate = calculateRange(area, selectedPackage.price, flooring.minimumCharge);
+        const removalText = hasRemoval() ? t.waRemovalYes : t.waRemovalNo;
+        const name = isEn ? selectedPackage.enLabel : selectedPackage.label;
+
+        const message = [
+          t.waGreeting,
+          `${flooring.enLabel}: ${name}`,
+          `${t.waArea}: ${area.toLocaleString()} sq ft`,
+          `${t.waPackage}: ${name} (${selectedPackage.englishLabel})`,
+          `${removalText}`,
+          `${t.waEstimate}: ${currency.format(estimate.min)} – ${currency.format(estimate.max)}`,
+          t.waClosing,
+        ].join('\n');
+
+        link.href = `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(message)}`;
+      });
+    };
+
+    const updateSliderFill = (area: number) => {
+      if (!slider) return;
+
+      const percentage = ((area - config.minArea) / (config.maxArea - config.minArea)) * 100;
+      slider.style.setProperty('--range-progress', `${percentage}%`);
+    };
+
+    const render = () => {
+      const selectedType = getSelectedType();
+      const flooring = pricing[selectedType];
+      const area = getArea();
+      const removalCost = hasRemoval() ? area * config.removalRate : 0;
+      const name = isEn ? flooring.enLabel : flooring.label;
+
+      if (areaOutput) {
+        areaOutput.innerHTML = `${area.toLocaleString()} <small>sq ft</small>`;
+      }
+
+      if (typeOutput) typeOutput.textContent = name;
+      if (minimumOutput) minimumOutput.textContent = currency.format(flooring.minimumCharge);
+
+      if (removalSummary) removalSummary.hidden = !hasRemoval();
+      if (removalAmount) removalAmount.textContent = currency.format(removalCost);
+
+      if (packagesContainer) {
+        packagesContainer.innerHTML = flooring.packages
+          .map((packageItem) => createPackageCard(packageItem, flooring, area))
+          .join('');
+      }
+
+      updateSliderFill(area);
+      refreshWhatsAppLinks(flooring, area);
+    };
+
+    slider?.addEventListener('input', render);
+    removalToggle?.addEventListener('change', render);
+    typeInputs.forEach((input) => input.addEventListener('change', render));
+
+    render();
+  }
+</script>

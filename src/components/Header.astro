@@ -1,0 +1,157 @@
+---
+interface Props {
+  lang: 'zh-HK' | 'en';
+}
+
+const { lang } = Astro.props;
+
+const isChinese = lang === 'zh-HK';
+
+const content = isChinese
+  ? {
+      menu: '選單',
+      close: '關閉',
+      language: 'EN',
+      languageHref: '/en/',
+      homeHref: '/',
+      home: '首頁',
+      projects: '精選工程',
+      approach: '我們的方式',
+      services: '服務範圍',
+      contact: '聯絡我們',
+      estimate: '初步估算',
+      estimateHref: '/estimate/',
+      whatsapp: 'WhatsApp 查詢',
+      menuLabel: '開啟選單',
+      navLabel: '主要導覽',
+      switchLabel: 'Switch to English',
+      languageVersion: 'English Version',
+    }
+  : {
+      menu: 'Menu',
+      close: 'Close',
+      language: '中文',
+      languageHref: '/',
+      homeHref: '/en/',
+      home: 'Home',
+      projects: 'Selected Spaces',
+      approach: 'Our Approach',
+      services: 'What We Do',
+      contact: 'Contact',
+      estimate: 'Estimate',
+      estimateHref: '/en/estimate/',
+      whatsapp: 'WhatsApp Enquiry',
+      menuLabel: 'Open menu',
+      navLabel: 'Main navigation',
+      switchLabel: '切換至繁體中文',
+      languageVersion: '繁體中文版本',
+    };
+---
+
+<header class="site-header site-header--editorial">
+  <div class="site-header__inner">
+    <a class="brand brand--editorial brand--editorial-logo" href={content.homeHref} aria-label="Jupiter's Design Limited">
+      <img
+        class="brand__logo"
+        src="/logo.svg"
+        alt="Jupiter's Design Limited"
+        width="180"
+        height="48"
+      />
+      <span class="brand__descriptor">Flooring · Hong Kong</span>
+    </a>
+
+    <div class="site-header__actions site-header__actions--editorial">
+      <a
+        class="language-switch"
+        href={content.languageHref}
+        aria-label={content.switchLabel}
+      >
+        {content.language}
+      </a>
+
+      <button
+        class="menu-toggle menu-toggle--editorial"
+        type="button"
+        aria-label={content.menuLabel}
+        aria-expanded="false"
+        data-menu-toggle
+      >
+        <span class="menu-toggle__label" data-menu-label>{content.menu}</span>
+        <span class="menu-toggle__lines" aria-hidden="true">
+          <i></i>
+          <i></i>
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <div class="editorial-menu" data-mobile-menu aria-hidden="true">
+    <div class="editorial-menu__inner">
+      <p class="editorial-menu__eyebrow">Jupiter’s Design Limited</p>
+
+      <nav aria-label={content.navLabel}>
+        <a href={content.homeHref}><span>01</span><span>{content.home}</span></a>
+        <a href={`${content.homeHref}#approach`}><span>02</span><span>{content.approach}</span></a>
+        <a href={`${content.homeHref}#services`}><span>03</span><span>{content.services}</span></a>
+        <a href={`${content.homeHref}#projects`}><span>04</span><span>{content.projects}</span></a>
+        <a href={`${content.homeHref}#contact`}><span>05</span><span>{content.contact}</span></a>
+        <a href={content.estimateHref}><span>06</span><span>{content.estimate}</span></a>
+      </nav>
+
+      <div class="editorial-menu__footer">
+        <a
+          href="https://wa.me/85295715155"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {content.whatsapp} <span>↗</span>
+        </a>
+
+        <a href={content.languageHref}>
+          {content.languageVersion} <span>↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const headerRoot = document.currentScript?.closest('header');
+  const toggle = headerRoot?.querySelector('[data-menu-toggle]');
+  const menu = headerRoot?.querySelector('[data-mobile-menu]');
+  const menuLabel = headerRoot?.querySelector('[data-menu-label]');
+  const menuLinks = menu?.querySelectorAll('a');
+  const htmlLang = document.documentElement.lang;
+  const isChinese = htmlLang === 'zh-HK';
+
+  const closeMenu = () => {
+    toggle?.setAttribute('aria-expanded', 'false');
+    menu?.classList.remove('is-open');
+    menu?.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('menu-open');
+
+    if (menuLabel) {
+      menuLabel.textContent = isChinese ? '選單' : 'Menu';
+    }
+  };
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+    menu?.classList.toggle('is-open', !isOpen);
+    menu?.setAttribute('aria-hidden', String(isOpen));
+    document.body.classList.toggle('menu-open', !isOpen);
+
+    if (menuLabel) {
+      menuLabel.textContent = !isOpen
+        ? isChinese ? '關閉' : 'Close'
+        : isChinese ? '選單' : 'Menu';
+    }
+  });
+
+  menuLinks?.forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+</script>

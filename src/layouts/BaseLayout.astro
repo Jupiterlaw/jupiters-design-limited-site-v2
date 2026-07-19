@@ -1,0 +1,124 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: 'zh-HK' | 'en';
+  canonicalPath?: string;
+}
+
+const {
+  title,
+  description,
+  lang = 'zh-HK',
+  canonicalPath = '/',
+} = Astro.props;
+
+const siteUrl = 'https://www.jupitersdesign.com';
+const canonicalUrl = new URL(canonicalPath, siteUrl).toString();
+const alternatePath = lang === 'zh-HK' ? '/en/' : '/';
+const alternateLang = lang === 'zh-HK' ? 'en' : 'zh-HK';
+const alternateUrl = new URL(alternatePath, siteUrl).toString();
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#20231f" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang={lang} href={canonicalUrl} />
+    <link rel="alternate" hreflang={alternateLang} href={alternateUrl} />
+    <link rel="alternate" hreflang="x-default" href={`${siteUrl}/`} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="Jupiter's Design Limited" />
+    <meta property="og:image" content={`${siteUrl}/images/hero/hero-flooring.jpg`} />
+
+    <title>{title}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Noto+Serif+TC:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap"
+      rel="stylesheet"
+    />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'LocalBusiness',
+        name: "Jupiter's Design Limited",
+        url: siteUrl,
+        image: `${siteUrl}/images/hero/hero-flooring.jpg`,
+        email: 'info@jupitersdesign.com',
+        telephone: '+85295715155',
+        areaServed: {
+          '@type': 'City',
+          name: 'Hong Kong',
+        },
+        sameAs: ['https://www.instagram.com/jupitersdesign/'],
+        description,
+        priceRange: '$$',
+      })}
+    />
+  </head>
+
+  <body>
+    <slot />
+
+    <a
+      class="floating-whatsapp"
+      href="https://wa.me/85295715155"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={lang === 'zh-HK'
+        ? '透過 WhatsApp 聯絡 Jupiter’s Design'
+        : 'Contact Jupiter’s Design on WhatsApp'}
+    >
+      <span class="floating-whatsapp__dot"></span>
+      <span>WhatsApp</span>
+    </a>
+
+    <script>
+      const header = document.querySelector<HTMLElement>('.site-header');
+
+      const updateHeader = () => {
+        header?.classList.toggle('site-header--scrolled', window.scrollY > 24);
+      };
+
+      updateHeader();
+      window.addEventListener('scroll', updateHeader, { passive: true });
+
+      const reveals = document.querySelectorAll<HTMLElement>('[data-reveal]');
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-revealed');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.14 },
+        );
+
+        reveals.forEach((element) => observer.observe(element));
+      } else {
+        reveals.forEach((element) => element.classList.add('is-revealed'));
+      }
+    </script>
+  </body>
+</html>

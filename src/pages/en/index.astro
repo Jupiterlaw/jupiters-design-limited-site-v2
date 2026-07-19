@@ -1,12 +1,12 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
 
 const projects = [
   {
     number: '01',
     category: 'Private Residence',
-    title: '讓自然木紋，成為生活的背景。',
+    title: 'Let natural grain become the backdrop to daily life.',
     detail: 'SPC Flooring · Hong Kong',
     image: '/images/projects/project-residential-01.jpg',
     layout: 'editorial-project--wide',
@@ -14,7 +14,7 @@ const projects = [
   {
     number: '02',
     category: 'Commercial Space',
-    title: '留給日常，一個安靜的基礎。',
+    title: 'A quiet foundation for the everyday.',
     detail: 'Flooring Construction · Hong Kong',
     image: '/images/projects/project-commercial-01.jpg',
     layout: 'editorial-project--portrait',
@@ -22,7 +22,7 @@ const projects = [
   {
     number: '03',
     category: 'Outdoor Terrace',
-    title: '延伸到光、風與時間之中。',
+    title: 'Extended into light, air and time.',
     detail: 'Outdoor Flooring · Hong Kong',
     image: '/images/projects/project-outdoor-01.jpg',
     layout: 'editorial-project--wide editorial-project--offset',
@@ -32,34 +32,34 @@ const projects = [
 const process = [
   {
     number: '01',
-    title: '對話',
-    description: '由你的空間、相片與初步想法開始。',
+    title: 'Conversation',
+    description: 'We begin with your space, photographs and first thoughts.',
   },
   {
     number: '02',
-    title: '理解',
-    description: '走進現場，看見基層、光線與使用方式。',
+    title: 'Understanding',
+    description: 'We see the subfloor, light and everyday movement on site.',
   },
   {
     number: '03',
-    title: '選擇',
-    description: '在材質、比例與耐用之間，找到合適的答案。',
+    title: 'Selection',
+    description: 'We find the right balance of material, proportion and endurance.',
   },
   {
     number: '04',
-    title: '完成',
-    description: '以細緻收口，讓地面成為空間的一部分。',
+    title: 'Completion',
+    description: 'Careful finishing allows flooring to belong naturally to the space.',
   },
 ];
 ---
 
 <BaseLayout
-  title="Jupiter’s Design Limited｜香港地板工程"
-  description="Jupiter’s Design Limited 專注香港住宅及商業空間的 SPC 地板、戶外地板及地面工程。以材料、細節與安靜的施工節奏，為空間建立長久基礎。"
-  lang="zh-HK"
-  canonicalPath="/"
+  title="Jupiter’s Design Limited | Flooring in Hong Kong"
+  description="Jupiter’s Design Limited delivers considered SPC flooring, outdoor flooring and flooring construction for residential and commercial spaces in Hong Kong."
+  lang="en"
+  canonicalPath="/en/"
 >
-  <Header lang="zh" />
+  <Header lang="en" />
 
   <main id="top">
     <section class="editorial-hero">
@@ -70,13 +70,13 @@ const process = [
         <p class="editorial-kicker">Jupiter’s Design Limited · Hong Kong</p>
 
         <h1>
-          地面，讓空間<br />
-          <em>安靜下來。</em>
+          Flooring that lets<br />
+          a space <em>be still.</em>
         </h1>
 
         <div class="editorial-hero__footer">
           <p>SPC Flooring · Outdoor Flooring · Construction</p>
-          <a href="#approach">向下探索 <span>↓</span></a>
+          <a href="#approach">Explore below <span>↓</span></a>
         </div>
       </div>
     </section>
@@ -87,19 +87,20 @@ const process = [
 
         <div class="editorial-manifesto__statement" data-reveal>
           <p>
-            好的地板，<br />
-            不爭取注意。<br />
-            它讓每一個日常，<br />
-            <em>自然地發生。</em>
+            Good flooring<br />
+            does not ask for attention.<br />
+            It lets everyday life<br />
+            <em>unfold naturally.</em>
           </p>
         </div>
 
         <div class="editorial-manifesto__note" data-reveal>
           <p>
-            Jupiter’s Design Limited 專注於 SPC 地板、戶外地板及相關地面工程。
-            我們從現場開始，理解材料如何陪伴光線、步伐與時間。
+            Jupiter’s Design Limited specialises in SPC flooring, outdoor flooring
+            and flooring construction. We begin on site, considering how materials
+            live alongside light, movement and time.
           </p>
-          <a class="editorial-text-link" href="#contact">開始一段對話 <span>↗</span></a>
+          <a class="editorial-text-link" href="#contact">Begin a conversation <span>↗</span></a>
         </div>
       </div>
     </section>
@@ -115,11 +116,11 @@ const process = [
           <div class="editorial-practice__copy" data-reveal>
             <p class="editorial-kicker">SPC Flooring</p>
             <h2>
-              穩定，不代表<br />
-              <em>失去溫度。</em>
+              Stability does not mean<br />
+              <em>losing warmth.</em>
             </h2>
             <p class="editorial-practice__description">
-              為每天被使用的室內空間，選擇兼具耐用、穩定與自然觸感的地面。
+              Flooring with durability, stability and a natural presence for interiors used every day.
             </p>
           </div>
 
@@ -130,7 +131,7 @@ const process = [
             rel="noopener noreferrer"
             data-reveal
           >
-            WhatsApp 查詢 <span>↗</span>
+            WhatsApp Enquiry <span>↗</span>
           </a>
         </div>
 
@@ -149,11 +150,11 @@ const process = [
           <div class="editorial-practice__copy" data-reveal>
             <p class="editorial-kicker">Outdoor Flooring</p>
             <h2>
-              把空間，<br />
-              <em>交還給光與風。</em>
+              Give space back<br />
+              <em>to light and air.</em>
             </h2>
             <p class="editorial-practice__description">
-              由露台、天台至戶外平台，讓材質回應日照、排水與季節的變化。
+              For terraces, rooftops and platforms, materials respond to sun, drainage and the changing seasons.
             </p>
           </div>
 
@@ -164,7 +165,7 @@ const process = [
             rel="noopener noreferrer"
             data-reveal
           >
-            WhatsApp 查詢 <span>↗</span>
+            WhatsApp Enquiry <span>↗</span>
           </a>
         </div>
       </article>
@@ -179,11 +180,11 @@ const process = [
           <div class="editorial-practice__copy" data-reveal>
             <p class="editorial-kicker">Flooring Construction</p>
             <h2>
-              看不見的地方，<br />
-              <em>也值得做好。</em>
+              What remains unseen<br />
+              <em>deserves care too.</em>
             </h2>
             <p class="editorial-practice__description">
-              由基層處理、材料比例到最後收口，讓工程有安靜而可靠的完成度。
+              From subfloor preparation and material proportion to every final junction, work is completed with quiet precision.
             </p>
           </div>
 
@@ -194,7 +195,7 @@ const process = [
             rel="noopener noreferrer"
             data-reveal
           >
-            WhatsApp 查詢 <span>↗</span>
+            WhatsApp Enquiry <span>↗</span>
           </a>
         </div>
 
@@ -207,8 +208,8 @@ const process = [
         <div class="editorial-projects__intro">
           <p class="editorial-kicker" data-reveal>05 · Selected Spaces</p>
           <h2 data-reveal>
-            空間的質感，<br />
-            <em>由腳下開始。</em>
+            The character of a space<br />
+            <em>begins underfoot.</em>
           </h2>
         </div>
 
@@ -216,7 +217,7 @@ const process = [
           {projects.map((project) => (
             <article class:list={['editorial-project', project.layout]} data-reveal>
               <div class="editorial-project__image">
-                <img src={project.image} alt={`${project.title}｜${project.category}`} loading="lazy" />
+                <img src={project.image} alt={`${project.title} | ${project.category}`} loading="lazy" />
               </div>
 
               <div class="editorial-project__meta">
@@ -236,7 +237,7 @@ const process = [
           rel="noopener noreferrer"
           data-reveal
         >
-          與我們討論你的空間 <span>↗</span>
+          Discuss your space with us <span>↗</span>
         </a>
       </div>
     </section>
@@ -254,8 +255,8 @@ const process = [
         <div class="editorial-process__intro">
           <p class="editorial-kicker" data-reveal>06 · A Considered Process</p>
           <h2 data-reveal>
-            從一個想法，<br />
-            <em>到一個完成的地面。</em>
+            From a first thought<br />
+            <em>to a finished floor.</em>
           </h2>
         </div>
 
@@ -276,8 +277,8 @@ const process = [
         <p class="editorial-kicker" data-reveal>07 · Get In Touch</p>
 
         <h2 data-reveal>
-          讓我們從你的空間開始。<br />
-          <em>慢慢把它做好。</em>
+          Let’s begin with your space.<br />
+          <em>Then make it right.</em>
         </h2>
 
         <a
@@ -287,7 +288,7 @@ const process = [
           rel="noopener noreferrer"
           data-reveal
         >
-          <span>開始一段對話</span>
+          <span>Begin a conversation</span>
           <span>↗</span>
         </a>
 

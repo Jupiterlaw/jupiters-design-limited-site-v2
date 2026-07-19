@@ -1,0 +1,128 @@
+---
+interface Props {
+  lang: 'zh' | 'en';
+}
+
+const { lang } = Astro.props;
+
+const content = {
+  zh: {
+    home: '首頁',
+    about: '關於我們',
+    services: '服務範圍',
+    projects: '精選工程',
+    contact: '聯絡我們',
+    whatsapp: 'WhatsApp 查詢',
+    language: 'EN',
+    languageHref: '/en/',
+    menu: '開啟選單',
+  },
+  en: {
+    home: 'Home',
+    about: 'About',
+    services: 'Services',
+    projects: 'Projects',
+    contact: 'Contact',
+    whatsapp: 'WhatsApp Enquiry',
+    language: '中文',
+    languageHref: '/',
+    menu: 'Open menu',
+  },
+}[lang];
+
+const navigation = [
+  { label: content.home, href: '#top' },
+  { label: content.about, href: '#about' },
+  { label: content.services, href: '#services' },
+  { label: content.projects, href: '#projects' },
+  { label: content.contact, href: '#contact' },
+];
+---
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="brand" href="#top" aria-label="Jupiter's Design Limited">
+      <span class="brand__mark">JD</span>
+      <span class="brand__name">Jupiter’s<br />Design</span>
+    </a>
+
+    <nav class="desktop-nav" aria-label={lang === 'zh' ? '主要導覽' : 'Main navigation'}>
+      {navigation.map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+    </nav>
+
+    <div class="site-header__actions">
+      <a
+        class="language-switch"
+        href={content.languageHref}
+        aria-label={lang === 'zh' ? 'Switch to English' : '切換至繁體中文'}
+      >
+        {content.language}
+      </a>
+
+      <a
+        class="header-whatsapp"
+        href="https://wa.me/85295715155"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {content.whatsapp}
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label={content.menu}
+        aria-expanded="false"
+        data-menu-toggle
+      >
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-menu" data-mobile-menu>
+    <nav aria-label={lang === 'zh' ? '流動版主要導覽' : 'Mobile main navigation'}>
+      {navigation.map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+
+      <a href={content.languageHref}>
+        {lang === 'zh' ? 'English Version' : '繁體中文版本'}
+      </a>
+
+      <a
+        class="mobile-menu__whatsapp"
+        href="https://wa.me/85295715155"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {content.whatsapp}
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.querySelector<HTMLElement>('[data-mobile-menu]');
+  const menuLinks = menu?.querySelectorAll('a');
+
+  const closeMenu = () => {
+    toggle?.setAttribute('aria-expanded', 'false');
+    menu?.classList.remove('is-open');
+    document.body.classList.remove('menu-open');
+  };
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+    menu?.classList.toggle('is-open', !isOpen);
+    document.body.classList.toggle('menu-open', !isOpen);
+  });
+
+  menuLinks?.forEach((link) => link.addEventListener('click', closeMenu));
+</script>
