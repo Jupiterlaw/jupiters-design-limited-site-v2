@@ -3,7 +3,7 @@
 **Project**: Jupiter's Design Limited - Official Website  
 **Repository**: `Jupiterlaw/jupiters-design-limited-site-v2`  
 **Live URL**: [www.jupitersdesign.com](https://www.jupitersdesign.com)  
-**Last Updated**: 2026-07-18
+**Last Updated**: 2026-07-20
 
 ---
 
@@ -12,13 +12,56 @@
 | Milestone | Status | Completion Date |
 |-----------|--------|----------------|
 | 📁 Repository Setup | ✅ Complete | 2026-07-18 |
-| 🎨 Website Design & Build | ✅ Complete | 2026-07-18 |
-| ☁️ Cloudflare Pages Connection | 🟡 Pending | - |
-| 🌐 Custom Domain DNS Setup | 🟡 Pending | - |
-| 🚀 Production Launch | 🟡 Pending | - |
+| 🎨 Website Design & Build | ✅ Complete | 2026-07-20 |
+| ☁️ Cloudflare Pages Connection | ✅ Complete | 2026-07-20 |
+| 🌐 Custom Domain DNS Setup | ✅ Complete | 2026-07-20 |
+| 🚀 Production Launch | ✅ Complete | 2026-07-20 |
 
 **Legend**:  
 ✅ Complete | 🟡 Pending | 🔄 In Progress | ⚠️ Blocked
+
+---
+
+## 🤖 Phase 2: Agent Refinement Session (2026-07-20)
+
+Hermes Agent 協作的一輪密集迭代。所有改動已 commit + push 到 `origin/main`，Cloudflare Pages 自動部署。
+
+### ✅ Completed This Session
+
+**Brand & Header**
+- [x] 品牌 logo 放入 header（`public/logo.svg`，深色 Hero 用 `filter: brightness(0) invert(.94)` 轉白，滾動後回復 navy）
+- [x] 修 header 選單 bug #1：`document.currentScript` 在 Astro ES module 中恆為 null → 改用 `document.querySelector('[data-menu-toggle]')`（commit `33ccda8`）
+- [x] 修 header 中文首頁退化英文 bug：`index.astro` 傳 `lang="zh"` 但判斷條件是 `zh-HK` → 改 `lang="zh-HK"`（commit `33ccda8`）
+- [x] 修 header 選單 bug #2（「有反應但看不到」）：mobile menu 原嵌套在 `<header>` 內（fixed + z-index:50），視覺被壓住 → 移出 header 到 body 層、z-index 提到 60（commit `1eb3e13`）
+
+**Bilingual Calculator**
+- [x] `PriceCalculator.astro` 改為 bilingual（zh-HK / en），新增 `/en/estimate/` 路由（commit `661b8d8`）
+- [x] 隱藏每平方呎單價顯示，保留後端預算計算邏輯（commit `28ea4f4`）
+- [x] 移除「估算加 HK$40 / sq ft」加價說明文字，保留拆舊費計算（commit `09f5096`）
+- [x] essential 方案標註「只含安裝」+「不含材料」小字；signature/elevated 維持「材料與安裝全包」（commit `b3106dc`）
+- [x] 戶外基礎之選單價 50–55 → 45–50 per sq ft（commit `dc3e08d`）
+- [x] 加可編輯 sq ft 輸入框，與 slider 雙向同步、夾值 [min,max]（commit `3cb9944`）
+
+**Editorial UI**
+- [x] 為計算機寫一套 editorial / 安靜奢華 CSS（原本計算機完全無樣式），token 驅動（commit `f75b78c`）
+
+**SEO & Deploy**
+- [x] 加 `@astrojs/sitemap`，canonical/sitemap 用正式網域 `https://www.jupitersdesign.com`（commit `2a33006`）
+- [x] Cloudflare Pages project `jupiters-design-limited-site-v2` 綁定正式網域：
+  - `www.jupitersdesign.com` 與 `jupitersdesign.com` 從舊 project `jupitersdesignlimited`（連錯誤 repo `Jupiterlaw/Jupiters-Design-Limited`）移除，改指到本 project
+  - zone `jupitersdesign.com` 設 Redirect Rule：根網域 301 → www
+
+### 🔗 Key Technical Notes
+- Astro `<script>` 是 module，`document.currentScript` 恆為 null → 用 `document.querySelector`
+- lightningcss minifier 會把 `invert(1)` 壓成空 `invert()` → logo 反白用 `invert(.94)`
+- 計算機卡片由 JS `innerHTML` 動態生成 → scoped style 針對動態節點要用 `:global()`
+- `git push` 走 Windows Git Credential Manager 快取憑證，Agent 可直接 push（無需 token）
+
+### 📌 Pending / Next Possible Steps
+- [ ] 線上視覺確認（本環境無瀏覽器，需用戶實際開 `www.jupitersdesign.com` 檢查）
+- [ ] 搜尋控制台提交 sitemap（`https://www.jupitersdesign.com/sitemap-index.xml`）
+- [ ] 計算機若需更多欄位（如房間數、形狀）可再加
+- [ ] 備份檔 `C:\Users\Jupiter\PROGRESS.md.backup.*` 確認後可刪
 
 ---
 
