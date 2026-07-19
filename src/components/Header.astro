@@ -117,13 +117,12 @@ const content = isChinese
 </header>
 
 <script>
-  const headerRoot = document.currentScript?.closest('header');
-  const toggle = headerRoot?.querySelector('[data-menu-toggle]');
+  const toggle = document.querySelector('[data-menu-toggle]');
+  const headerRoot = toggle?.closest('header');
   const menu = headerRoot?.querySelector('[data-mobile-menu]');
   const menuLabel = headerRoot?.querySelector('[data-menu-label]');
   const menuLinks = menu?.querySelectorAll('a');
-  const htmlLang = document.documentElement.lang;
-  const isChinese = htmlLang === 'zh-HK';
+  const isChinese = document.documentElement.lang === 'zh-HK';
 
   const closeMenu = () => {
     toggle?.setAttribute('aria-expanded', 'false');
