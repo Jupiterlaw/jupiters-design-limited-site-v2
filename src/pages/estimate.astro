@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import PriceCalculator from '../components/PriceCalculator.astro';
+---
+
+<BaseLayout
+  title="初步地板估算 | Jupiter’s Design Limited"
+  description="使用 Jupiter’s Design Limited 初步估算工具，快速查看 SPC 地板及戶外地板的預算範圍。"
+  lang="zh-HK"
+  canonicalPath="/estimate/"
+>
+  <Header lang="zh-HK" />
+  <main id="top">
+    <PriceCalculator />
+  </main>
+</BaseLayout>
