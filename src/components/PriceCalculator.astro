@@ -12,6 +12,7 @@ interface Package {
   description: string;
   enDescription: string;
   price: PriceRange;
+  materialsIncluded: boolean;
   featured?: boolean;
 }
 
@@ -43,6 +44,7 @@ const flooringTypes: Record<'spc' | 'outdoor', FlooringType> = {
         description: '實用、耐用，適合預算優先的空間。',
         enDescription: 'Practical and durable, for spaces where budget leads.',
         price: { min: 16, max: 20 },
+        materialsIncluded: false,
       },
       {
         id: 'signature',
@@ -53,6 +55,7 @@ const flooringTypes: Record<'spc' | 'outdoor', FlooringType> = {
         enDescription: 'A balance of texture, endurance and budget.',
         price: { min: 35, max: 39 },
         featured: true,
+        materialsIncluded: true,
       },
       {
         id: 'elevated',
@@ -62,6 +65,7 @@ const flooringTypes: Record<'spc' | 'outdoor', FlooringType> = {
         description: '為重視材料表情與完成細節的空間而設。',
         enDescription: 'For spaces that prize material expression and finishing.',
         price: { min: 48, max: 52 },
+        materialsIncluded: true,
       },
     ],
   },
@@ -78,6 +82,7 @@ const flooringTypes: Record<'spc' | 'outdoor', FlooringType> = {
         description: '兼顧戶外耐用度與實用預算。',
         enDescription: 'Outdoor endurance with a practical budget.',
         price: { min: 50, max: 55 },
+        materialsIncluded: false,
       },
       {
         id: 'signature',
@@ -88,6 +93,7 @@ const flooringTypes: Record<'spc' | 'outdoor', FlooringType> = {
         enDescription: 'A balanced plan for terraces, roofs and outdoor platforms.',
         price: { min: 110, max: 115 },
         featured: true,
+        materialsIncluded: true,
       },
       {
         id: 'elevated',
@@ -97,6 +103,7 @@ const flooringTypes: Record<'spc' | 'outdoor', FlooringType> = {
         description: '為重視細節、表面質感與戶外表現的空間而設。',
         enDescription: 'For spaces that value detail, surface quality and outdoor presence.',
         price: { min: 200, max: 220 },
+        materialsIncluded: true,
       },
     ],
   },
@@ -126,6 +133,8 @@ const ui = {
     summaryType: '目前選擇',
     summaryMinimum: '最低工程費',
     packageRate: '材料與安裝全包',
+    packageRateExcluded: '只含安裝',
+    materialNote: '不含材料',
     packageEstimate: '初步預算範圍',
     packageCta: '選擇此方案',
     badge: '最多人選',
@@ -152,6 +161,8 @@ const ui = {
     summaryType: 'Currently selected',
     summaryMinimum: 'Minimum project fee',
     packageRate: 'Material & installation included',
+    packageRateExcluded: 'Installation only',
+    materialNote: 'Materials not included',
     packageEstimate: 'Indicative estimate',
     packageCta: 'Choose this package',
     badge: 'Most chosen',
@@ -273,7 +284,8 @@ const dictionary = isEn ? ui.en : ui['zh-HK'];
           <p class="calculator-package__description">{isEn ? packageItem.enDescription : packageItem.description}</p>
 
           <div class="calculator-package__rate">
-            <span>{dictionary.packageRate}</span>
+            <span>{packageItem.materialsIncluded ? dictionary.packageRate : dictionary.packageRateExcluded}</span>
+            {!packageItem.materialsIncluded && <small>{dictionary.materialNote}</small>}
           </div>
 
           <div class="calculator-package__estimate">
@@ -641,6 +653,14 @@ const dictionary = isEn ? ui.en : ui['zh-HK'];
     color: var(--ink-soft);
   }
 
+  .calculator-packages :global(.calculator-package__rate small) {
+    display: block;
+    margin-top: 6px;
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    color: var(--moss);
+  }
+
   .calculator-packages :global(.calculator-package__estimate) {
     display: flex;
     flex-direction: column;
@@ -724,15 +744,16 @@ const dictionary = isEn ? ui.en : ui['zh-HK'];
   }
 
   interface BrowserPackage {
-    id: 'essential' | 'signature' | 'elevated';
-    label: string;
-    enLabel: string;
-    englishLabel: string;
-    description: string;
-    enDescription: string;
-    price: BrowserPriceRange;
-    featured?: boolean;
-  }
+      id: 'essential' | 'signature' | 'elevated';
+      label: string;
+      enLabel: string;
+      englishLabel: string;
+      description: string;
+      enDescription: string;
+      price: BrowserPriceRange;
+      materialsIncluded: boolean;
+      featured?: boolean;
+    }
 
   interface BrowserFlooringType {
     label: string;
@@ -781,6 +802,8 @@ const dictionary = isEn ? ui.en : ui['zh-HK'];
         summaryType: '目前選擇',
         summaryMinimum: '最低工程費',
         packageRate: '材料與安裝全包',
+    packageRateExcluded: '只含安裝',
+    materialNote: '不含材料',
         packageEstimate: '初步預算範圍',
         packageCta: '選擇此方案',
         waGreeting: '你好，想查詢初步地板報價。',
@@ -795,6 +818,8 @@ const dictionary = isEn ? ui.en : ui['zh-HK'];
         summaryType: 'Currently selected',
         summaryMinimum: 'Minimum project fee',
         packageRate: 'Material & installation included',
+    packageRateExcluded: 'Installation only',
+    materialNote: 'Materials not included',
         packageEstimate: 'Indicative estimate',
         packageCta: 'Choose this package',
         waGreeting: 'Hello, I would like a preliminary flooring quote.',
@@ -871,7 +896,8 @@ const dictionary = isEn ? ui.en : ui['zh-HK'];
           <h2>${name}</h2>
           <p class="calculator-package__description">${description}</p>
           <div class="calculator-package__rate">
-            <span>${t.packageRate}</span>
+            <span>${packageItem.materialsIncluded ? t.packageRate : t.packageRateExcluded}</span>
+            ${packageItem.materialsIncluded ? '' : `<small>${t.materialNote}</small>`}
           </div>
           <div class="calculator-package__estimate">
             <span>${t.packageEstimate}</span>
