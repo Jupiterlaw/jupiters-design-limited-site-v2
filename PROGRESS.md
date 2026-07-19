@@ -58,10 +58,12 @@ Hermes Agent 協作的一輪密集迭代。所有改動已 commit + push 到 `or
 - `git push` 走 Windows Git Credential Manager 快取憑證，Agent 可直接 push（無需 token）
 
 ### 📌 Pending / Next Possible Steps
+- [x] Search Console 驗證 `jupitersdesign.com`（Cloudflare Domain Connect 自動）+ 提交 sitemap `https://www.jupitersdesign.com/sitemap-index.xml`（狀態：成功，2026-07-20）
 - [ ] 線上視覺確認（本環境無瀏覽器，需用戶實際開 `www.jupitersdesign.com` 檢查）
-- [ ] 搜尋控制台提交 sitemap（`https://www.jupitersdesign.com/sitemap-index.xml`）
-- [ ] 計算機若需更多欄位（如房間數、形狀）可再加
-- [ ] 備份檔 `C:\Users\Jupiter\PROGRESS.md.backup.*` 確認後可刪
+- [ ] 落地頁英文版 `/en/spc-flooring-hong-kong/` + 英文 Header menu 加連結
+- [ ] 多 1–2 個落地頁（`/floor-installation-hong-kong/`、`/flooring-quotation-hong-kong/`）
+- [ ] 「SPC 地板香港完整指南」長文（提升 topical authority）
+- [ ] 備份檔 `C:\Users\Jupiter\PROGRESS.md.backup.*` 已刪（2026-07-20 清理）
 
 ---
 
