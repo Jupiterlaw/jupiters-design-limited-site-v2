@@ -127,6 +127,7 @@ const ui = {
     introBody: '選擇工程類型及預計面積，即時查看三個初步預算方案。最終報價會按現場基層、收口、拆除、搬運及實際工程範圍確認。',
     typeLegend: '工程類型',
     areaLabel: '預計施工面積',
+    areaInputLabel: '平方呎 (sq ft)',
     areaHelper: '可用鍵盤方向鍵微調面積，每次 10 sq ft。',
     removalTitle: '需要拆除舊地板',
     removalNote: '',
@@ -155,6 +156,7 @@ const ui = {
     introBody: 'Choose a project type and estimated area to see three indicative packages instantly. The final quote is confirmed on site — subfloor, edges, removal, logistics and exact scope.',
     typeLegend: 'Project type',
     areaLabel: 'Estimated area',
+    areaInputLabel: 'Area (sq ft)',
     areaHelper: 'Use the arrow keys to adjust area in steps of 10 sq ft.',
     removalTitle: 'Removal of existing flooring',
     removalNote: '',
@@ -233,6 +235,25 @@ const dictionary = isEn ? ui.en : ui['zh-HK'];
         <div class="calculator-area__range" aria-hidden="true">
           <span>{calculatorConfig.minArea} sq ft</span>
           <span>{calculatorConfig.maxArea.toLocaleString()} sq ft</span>
+        </div>
+
+        <div class="calculator-area__input">
+          <label for="area-input">{dictionary.areaInputLabel}</label>
+          <div class="calculator-area__input-field">
+            <input
+              id="area-input"
+              class="calculator-area__number"
+              type="number"
+              inputmode="numeric"
+              min={calculatorConfig.minArea}
+              max={calculatorConfig.maxArea}
+              step={calculatorConfig.step}
+              value={calculatorConfig.defaultArea}
+              data-area-input
+              aria-describedby="area-helper"
+            />
+            <span class="calculator-area__unit">sq ft</span>
+          </div>
         </div>
 
         <p id="area-helper" class="calculator-area__helper">
@@ -486,6 +507,70 @@ const dictionary = isEn ? ui.en : ui['zh-HK'];
   .calculator-area__helper {
     margin: 14px 0 0;
     font-size: 12px;
+    color: var(--ink-soft);
+  }
+
+  .calculator-area__input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 22px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+  }
+
+  .calculator-area__input > label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .calculator-area__input-field {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 10px 14px;
+    border: 1px solid var(--ink);
+    border-radius: 2px;
+    background: var(--paper);
+    transition: border-color 0.2s var(--ease);
+  }
+
+  .calculator-area__input-field:focus-within {
+    border-color: var(--moss);
+  }
+
+  .calculator-area__number {
+    width: 84px;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    font-family: var(--serif);
+    font-size: 20px;
+    line-height: 1;
+    color: var(--ink);
+    text-align: right;
+    -moz-appearance: textfield;
+  }
+
+  .calculator-area__number:focus {
+    outline: none;
+  }
+
+  .calculator-area__number::-webkit-outer-spin-button,
+  .calculator-area__number::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .calculator-area__unit {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
     color: var(--ink-soft);
   }
 
@@ -837,6 +922,7 @@ const dictionary = isEn ? ui.en : ui['zh-HK'];
     const typeInputs = calculator.querySelectorAll<HTMLInputElement>('input[name="flooring-type"]');
     const removalToggle = calculator.querySelector<HTMLInputElement>('[data-removal-toggle]');
     const areaOutput = calculator.querySelector<HTMLOutputElement>('[data-area-output]');
+    const areaInput = calculator.querySelector<HTMLInputElement>('[data-area-input]');
     const typeOutput = calculator.querySelector<HTMLElement>('[data-summary-type]');
     const minimumOutput = calculator.querySelector<HTMLElement>('[data-summary-minimum]');
     const removalSummary = calculator.querySelector<HTMLElement>('[data-removal-summary]');
@@ -976,12 +1062,28 @@ const dictionary = isEn ? ui.en : ui['zh-HK'];
       }
 
       updateSliderFill(area);
+
+      if (areaInput && document.activeElement !== areaInput) {
+        areaInput.value = String(area);
+      }
+
       refreshWhatsAppLinks(flooring, area);
     };
 
     slider?.addEventListener('input', render);
     removalToggle?.addEventListener('change', render);
     typeInputs.forEach((input) => input.addEventListener('change', render));
+
+    areaInput?.addEventListener('input', () => {
+      if (!slider) return;
+
+      const raw = Number(areaInput.value);
+      let next = Number.isFinite(raw) ? raw : config.minArea;
+      next = Math.min(config.maxArea, Math.max(config.minArea, next));
+
+      slider.value = String(next);
+      render();
+    });
 
     render();
   }
